@@ -1,0 +1,19 @@
+:root {
+  --body__bgColor: #1f1f1f;
+  --body__defaultColor: #fff;
+
+  --header__bgColor: #282828;
+  --header__aColor: #fff;
+  --header__input__bgColor: #121212;
+  --header__input__borderColor: #303030;
+  --header__input__focusColor: #fff;
+  --header__input__btn__bgColor: #393939;
+  --header__input__btnColor: #777777;
+
+  --nav__bgColor: #282828;
+  --nav__hover__bgColor: #3e3e3e;
+
+  --home__starColor: yellow;
+  --home__hrColor: #363636;
+  --home__moreColor: #959595;
+}

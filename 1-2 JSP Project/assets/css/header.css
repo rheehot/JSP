@@ -1,0 +1,63 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: var(--header__bgColor);
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+header .header__column:first-child {
+  margin-left: 20px;
+}
+header .header__column:first-child a {
+  color: inherit;
+  text-decoration: none;
+}
+header .header__column:first-child .fa-home {
+  cursor: pointer;
+}
+
+header .header__column:nth-child(2n) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .header__column:nth-child(2n) input[type="text"] {
+  width: 450px;
+  height: 30px;
+  padding-left: 10px;
+  background-color: var(--header__input__bgColor);
+  border: 1px solid: var(--header__input__borderColor);
+  font-size: 15px;
+  color: var(--header__input__focusColor);
+}
+header .header__column:nth-child(2n) input[type="text"]:focus {
+  outline: none;
+}
+header .header__column:nth-child(2n) .search__box {
+  padding: 7px 20px;
+  background-color: var(--header__input__btn__bgColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+header .header__column:nth-child(2n) .fa-search {
+  color: var(--header__input__btnColor);
+}
+
+header .header__column:last-child {
+  display: flex;
+  margin-right: 15px;
+}
+
+header .header__column:last-child a {
+  color: var(--header__aColor);
+  margin-right: 15px;
+  text-decoration: none;
+}

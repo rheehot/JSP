@@ -1,0 +1,39 @@
+nav {
+  position: fixed;
+  margin-top: 50px;
+  left: 0px;
+  width: 72px;
+  height: calc(100vh - 50px);
+  background-color: var(--nav__bgColor);
+  display: flex;
+  flex-direction: column;
+}
+
+nav .nav__item {
+  width: 72px;
+  height: 74px;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+nav .nav__item:hover {
+  background-color: var(--nav__hover__bgColor);
+}
+
+nav .nav__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+}
+nav .active {
+  opacity: 1;
+}
+
+nav .nav__item .nav__text {
+  margin-top: 10px;
+  font-size: 12px;
+}
