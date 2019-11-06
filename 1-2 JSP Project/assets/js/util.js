@@ -131,7 +131,7 @@ const searchMovies = (data, str) => {
   mainContents.className = "main__contents";
   mainColumn.className = "main__column";
   mainSectionText.className = "main__sectionText";
-  mainSectionText.innerText = str;
+  mainSectionText.innerText = `${str} 의 검색결과`;
 
   data.forEach(item => {
     const mainContentsItem = document.createElement("div");

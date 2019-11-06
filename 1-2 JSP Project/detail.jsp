@@ -14,6 +14,11 @@ pageEncoding="UTF-8"%>
     <title>Document</title>
   </head>
   <body>
+  	<%
+      String userEmail= (String) session.getAttribute("user.email");
+      String isAdmin = (String) session.getAttribute("isAdmin");
+  		session.removeAttribute("passwordError");
+  	%>
     <header>
       <div class="header__column">
         <a href="./index.jsp">
@@ -32,13 +37,8 @@ pageEncoding="UTF-8"%>
           <span><i class="fas fa-search"></i></span>
         </div>
       </div>
-      <div class="header__column">
-        <div class="header__item">
-          <a href="./join.html">JOIN</a>
-        </div>
-        <div class="header__item">
-          <a href="./login.html">LOGIN</a>
-        </div>
+      <div class="header__column" id="loginStatus">
+        
       </div>
     </header>
 
@@ -74,6 +74,29 @@ pageEncoding="UTF-8"%>
 
     <script src="./assets/js/util.js"></script>
     <script>
+    const headerChange = (href, text) => {
+        const target = document.getElementById("loginStatus");
+        const header__item = document.createElement("div");
+        const anchor = document.createElement("a");
+        header__item.className = "header__item";
+        anchor.href = href;
+        anchor.innerText = text;
+        header__item.appendChild(anchor);
+        target.appendChild(header__item);
+      };
+      const isAdmin = "<%=isAdmin%>";
+      console.log(isAdmin);
+      const loggedUser = "<%=userEmail%>";
+      console.log(loggedUser);
+      if(isAdmin === "true" && loggedUser !== "null"){
+        headerChange("./admin.jsp", "Admin");
+        headerChange("./jsp/handleLogout.jsp", "Logout");
+      } else if(loggedUser !== "null" && isAdmin !== "true") {
+        headerChange("./profile.html", "My Profile");
+        headerChange("./jsp/handleLogout.jsp", "Logout");
+      }else {
+        headerChange("./login.jsp", "Sign In");
+      }
       (async function getData() {
         document.querySelector(".content").style.display = "none";
         const data = await getDetail(location.search.replace("?id=", ""));
