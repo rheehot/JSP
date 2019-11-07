@@ -14,11 +14,9 @@ pageEncoding="UTF-8"%>
     <title>Document</title>
   </head>
   <body>
-  	<%
-      String userEmail= (String) session.getAttribute("user.email");
-      String isAdmin = (String) session.getAttribute("isAdmin");
-  		session.removeAttribute("passwordError");
-  	%>
+    <% String userEmail= (String) session.getAttribute("user.email"); String
+    isAdmin = (String) session.getAttribute("isAdmin");
+    session.removeAttribute("passwordError"); %>
     <header>
       <div class="header__column">
         <a href="./index.jsp">
@@ -35,14 +33,12 @@ pageEncoding="UTF-8"%>
           <span><i class="fas fa-search"></i></span>
         </div>
       </div>
-      <div class="header__column" id="loginStatus">
-        
-      </div>
+      <div class="header__column" id="loginStatus"></div>
     </header>
 
     <nav>
         <a href="./index.jsp" class="nav__item">
-          <div class="nav__box active">
+          <div class="nav__box">
             <i class="fas fa-home"></i>
             <span class="nav__text">홈</span>
           </div>
@@ -94,19 +90,28 @@ pageEncoding="UTF-8"%>
           </form>
         </div>
       </nav>
-    <main id="home">
-      <div class="sk-chase">
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
+
+    <main id="admin">
+      <div class="admin__content">
+        <div class="admin__column__left">
+          <div class="admin__column__leftItem">
+            <span class="admin__column__item__text">회원 조회</span>
+          </div>
+          <div class="admin__column__leftItem">
+            <span class="admin__column__item__text">회원탈퇴 요청</span>
+          </div>
+        </div>
+
+        <div class="admin__column__right" id="rightComponent">
+          <div class="admin__column__rightItem" style="font-size: 25px;">
+            회원 정보
+          </div>
+        </div>
       </div>
     </main>
 
-    <script src="./assets/js/util.js"></script>
     <script src="assets/js/search.js"></script>
+    <script src="./assets/js/util.js"></script>
     <script>
       const nav = document.querySelectorAll(".nav__item");
       nav.forEach(item => item.addEventListener("click", (e) => e.currentTarget.lastElementChild.submit()));
@@ -125,37 +130,22 @@ pageEncoding="UTF-8"%>
       console.log(isAdmin);
       const loggedUser = "<%=userEmail%>";
       console.log(loggedUser);
-      if(isAdmin === "true" && loggedUser !== "null"){
+      if (isAdmin === "true" && loggedUser !== "null") {
         headerChange("./admin.jsp", "Admin");
         headerChange("./jsp/handleLogout.jsp", "Logout");
-      } else if(loggedUser !== "null" && isAdmin !== "true") {
+      } else if (loggedUser !== "null" && isAdmin !== "true") {
         headerChange("./profile.html", "My Profile");
         headerChange("./jsp/handleLogout.jsp", "Logout");
-      }else {
+      } else {
         headerChange("./login.jsp", "Sign In");
       }
-      
-      (async function getData() {
-        const { results: nowPlaying } = await getNowPlaying();
-        const { results: popular } = await getPopular();
-        const { results: topRated } = await getTopRated();
-        const { results: upcoming } = await getUpcoming();
-        const { results: similar } = await getSimilar(475557);
-        paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화");
-        paintPosters(nowPlaying, "현재 상영 중");
-        paintPosters(upcoming, "개봉 예정");
-        paintPosters(popular, "인기있는");
-        paintPosters(topRated, "높은 평점");
-        const clickable = document.querySelectorAll(".main__contents__item");
-        clickable.forEach(item => {
-          item.addEventListener("click", e =>
-            e.currentTarget.lastChild.submit()
-          );
-        });
-        hideSpinner(".sk-chase");
-      })();
-      
-      
+      const btn = document.querySelectorAll(".admin__column__leftItem");
+      const rightComponent = document.getElementById("rightComponent");
+      const btnClick = e => {
+        rightComponent.innerText = e.target.innerText;
+        rightComponent.style.fontSize = "25px";
+      };
+      btn.forEach(item => item.addEventListener("click", btnClick));
     </script>
   </body>
 </html>

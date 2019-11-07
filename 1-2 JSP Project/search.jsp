@@ -40,44 +40,59 @@
       </div>
     </header>
     <nav>
-      <a href="./index.jsp" class="nav__item">
-        <div class="nav__box">
-          <i class="fas fa-home"></i>
-          <span class="nav__text">홈</span>
-        </div>
-      </a>
-      <a href="#" class="nav__item">
-        <div class="nav__box">
-          <i class="fas fa-fire"></i>
-          <span class="nav__text">인기</span>
-        </div>
-      </a>
-      <a href="#" class="nav__item">
-        <div class="nav__box">
-          <i class="fas fa-clock"></i>
-          <span class="nav__text">상영중</span>
-        </div>
-      </a>
-      <a href="#" class="nav__item">
-        <span class="nav__box">
-          <i class="fas fa-star"></i>
-          <span class="nav__text">최고평점</span>
+        <a href="./index.jsp" class="nav__item">
+          <div class="nav__box active">
+            <i class="fas fa-home"></i>
+            <span class="nav__text">홈</span>
+          </div>
         </a>
-      </div>
-      <a href="#" class="nav__item">
-        <span class="nav__box">
+        <div class="nav__item">
+          <div class="nav__box" id="popular">
+            <i class="fas fa-fire"></i>
+            <span class="nav__text">인기</span>
+          </div>
+          <form action="./list.jsp">
+              <input type="hidden" name="title" value="popular">
+          </form>
+        </div>
+        <div class="nav__item">
+          <div class="nav__box" id="nowPlaying">
+            <i class="fas fa-clock"></i>
+            <span class="nav__text">상영중</span>
+          </div>
+          <form action="./list.jsp">
+              <input type="hidden" name="title" value="nowPlaying">
+          </form>
+        </div>
+        <div class="nav__item">
+          <div class="nav__box" id="topRated">
+            <i class="fas fa-star"></i>
+            <span class="nav__text">높은평점</span>
+          </div>
+          <form action="./list.jsp">
+              <input type="hidden" name="title" value="topRated">
+          </form>
+        </div>
+        <div class="nav__item">
+          <div class="nav__box" id="upComing">
             <i class="fas fa-exclamation"></i>
-          <span class="nav__text">개봉예정</span>
-        </a>
-      </div>
-      <a href="#" class="nav__item">
-        <div class="nav__box">
-          <i class="fas fa-thumbs-up"></i>
-          <span class="nav__text">좋아요</span>
+            <span class="nav__text">개봉예정</span>
+          </div>
+          <form action="./list.jsp">
+              <input type="hidden" name="title" value="upComing">
+          </form>
         </div>
-      </a>
-      
-    </nav>
+          </div>
+        <div class="nav__item">
+          <div class="nav__box" id="like">
+            <i class="fas fa-thumbs-up"></i>
+            <span class="nav__text">좋아요</span>
+          </div>
+          <form action="./list.jsp">
+              <input type="hidden" name="title" value="like">
+          </form>
+        </div>
+      </nav>
     <main id="search">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
@@ -91,6 +106,9 @@
     <script src="assets/js/search.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>
+      const nav = document.querySelectorAll(".nav__item");
+      nav.forEach(item => item.addEventListener("click", (e) => e.currentTarget.lastElementChild.submit()));
+
       const headerChange = (href, text) => {
         const target = document.getElementById("loginStatus");
         const header__item = document.createElement("div");

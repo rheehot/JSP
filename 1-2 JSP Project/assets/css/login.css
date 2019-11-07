@@ -5,6 +5,7 @@
   align-items: center;
   padding: 0 20px;
   border: 1px solid #f9f9f9;
+  border-radius: 15px;
 }
 #login .login__column {
   margin-bottom: 20px;

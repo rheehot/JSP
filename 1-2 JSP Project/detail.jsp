@@ -14,11 +14,9 @@ pageEncoding="UTF-8"%>
     <title>Document</title>
   </head>
   <body>
-  	<%
-      String userEmail= (String) session.getAttribute("user.email");
-      String isAdmin = (String) session.getAttribute("isAdmin");
-  		session.removeAttribute("passwordError");
-  	%>
+    <% String userEmail= (String) session.getAttribute("user.email"); String
+    isAdmin = (String) session.getAttribute("isAdmin");
+    session.removeAttribute("passwordError"); %>
     <header>
       <div class="header__column">
         <a href="./index.jsp">
@@ -37,9 +35,7 @@ pageEncoding="UTF-8"%>
           <span><i class="fas fa-search"></i></span>
         </div>
       </div>
-      <div class="header__column" id="loginStatus">
-        
-      </div>
+      <div class="header__column" id="loginStatus"></div>
     </header>
 
     <main id="detail">
@@ -74,7 +70,7 @@ pageEncoding="UTF-8"%>
 
     <script src="./assets/js/util.js"></script>
     <script>
-    const headerChange = (href, text) => {
+      const headerChange = (href, text) => {
         const target = document.getElementById("loginStatus");
         const header__item = document.createElement("div");
         const anchor = document.createElement("a");
@@ -88,13 +84,13 @@ pageEncoding="UTF-8"%>
       console.log(isAdmin);
       const loggedUser = "<%=userEmail%>";
       console.log(loggedUser);
-      if(isAdmin === "true" && loggedUser !== "null"){
+      if (isAdmin === "true" && loggedUser !== "null") {
         headerChange("./admin.jsp", "Admin");
         headerChange("./jsp/handleLogout.jsp", "Logout");
-      } else if(loggedUser !== "null" && isAdmin !== "true") {
+      } else if (loggedUser !== "null" && isAdmin !== "true") {
         headerChange("./profile.html", "My Profile");
         headerChange("./jsp/handleLogout.jsp", "Logout");
-      }else {
+      } else {
         headerChange("./login.jsp", "Sign In");
       }
       (async function getData() {

@@ -8,6 +8,8 @@
 @import url("./loader.css");
 @import url("./detail.css");
 @import url("./login.css");
+@import url("./admin_main.css");
+@import url("./list.css");
 
 * {
   box-sizing: border-box;
@@ -17,7 +19,6 @@ body {
   font-family: "Open Sans", sans-serif;
   background-color: var(--body__bgColor);
   width: 100%;
-
   color: var(--body__defaultColor);
   display: flex;
   flex-direction: column;

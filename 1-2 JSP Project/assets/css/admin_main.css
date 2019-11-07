@@ -1,0 +1,49 @@
+#admin {
+  width: 100%;
+  height: calc(100vh - 50px);
+  margin-top: 50px;
+  background-color: var(--body__bgColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+#admin .admin__content {
+  border: 2px solid var(--home__moreColor);
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#admin .admin__column__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 20%;
+  height: 100%;
+  background-color: var(--nav__bgColor);
+  border-right: 2px solid var(--home__moreColor);
+}
+#admin .admin__column__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  background-color: var(--header__input__btn__bgColor);
+}
+
+#admin .admin__column__leftItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: var(--nav__bgColor);
+  cursor: pointer;
+}
+#admin .admin__column__leftItem:hover {
+  background-color: var(--nav__hover__bgColor);
+}
