@@ -42,13 +42,15 @@ const getSimilar = (id, page = 1) =>
     .then(res => res.json())
     .then(data => data);
 // Poster
-const paintPosters = (data, str) => {
+const paintPosters = (data, str, title) => {
   const mainColumn = document.createElement("div");
   const mainSectionText = document.createElement("span");
   const mainContents = document.createElement("div");
   const moreBox = document.createElement("div");
   const more = document.createElement("span");
   const hr = document.createElement("hr");
+  const form = document.createElement("form");
+  const input = document.createElement("input");
   const main = document.querySelector("main");
   mainContents.className = "main__contents";
   mainColumn.className = "main__column";
@@ -57,6 +59,10 @@ const paintPosters = (data, str) => {
   moreBox.className = "more__box";
   more.className = "more__box__text";
   more.innerText = "더보기";
+  form.action = "./list.jsp";
+  input.type = "hidden";
+  input.name = "title";
+  input.value = title;
   data.slice(0, 8).forEach(item => {
     const mainContentsItem = document.createElement("div");
     const mainContentsImgBox = document.createElement("div");
@@ -93,7 +99,9 @@ const paintPosters = (data, str) => {
     mainContentsItem.appendChild(mainContentsForm);
     mainContents.appendChild(mainContentsItem);
   });
+  form.appendChild(input);
   moreBox.appendChild(more);
+  moreBox.appendChild(form);
   mainColumn.appendChild(mainSectionText);
   mainColumn.appendChild(mainContents);
   mainColumn.appendChild(moreBox);

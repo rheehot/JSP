@@ -105,6 +105,8 @@
     <script src="./assets/js/util.js"></script>
     <script src="assets/js/search.js"></script>
     <script>
+      const term = location.search.replace("?title=", "");
+      document.getElementById(term).classList.add("active");
       const headerChange = (href, text) => {
         const target = document.getElementById("loginStatus");
         const header__item = document.createElement("div");
@@ -128,8 +130,6 @@
       } else {
         headerChange("./login.jsp", "Sign In");
       }
-      const term = location.search.replace("?title=", "");
-      document.getElementById(term).classList.add("active");
       const nav = document.querySelectorAll(".nav__item");
       nav.forEach(item => item.addEventListener("click", (e) => e.currentTarget.lastElementChild.submit()));
 

@@ -36,6 +36,9 @@ a {
   #home {
     padding-left: 25px;
   }
+  #admin {
+    padding-left: 25px;
+  }
   header .header__column:nth-child(2n) input[type="text"] {
     width: 130px;
   }

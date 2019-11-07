@@ -38,7 +38,7 @@ pageEncoding="UTF-8"%>
 
     <nav>
         <a href="./index.jsp" class="nav__item">
-          <div class="nav__box">
+          <div class="nav__box active">
             <i class="fas fa-home"></i>
             <span class="nav__text">홈</span>
           </div>

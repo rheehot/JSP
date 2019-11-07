@@ -141,21 +141,21 @@ pageEncoding="UTF-8"%>
         const { results: topRated } = await getTopRated();
         const { results: upcoming } = await getUpcoming();
         const { results: similar } = await getSimilar(475557);
-        paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화");
-        paintPosters(nowPlaying, "현재 상영 중");
-        paintPosters(upcoming, "개봉 예정");
-        paintPosters(popular, "인기있는");
-        paintPosters(topRated, "높은 평점");
+        paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화", "like");
+        paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
+        paintPosters(upcoming, "개봉 예정", "upComing");
+        paintPosters(popular, "인기있는", "popular");
+        paintPosters(topRated, "높은 평점", "topRated");
         const clickable = document.querySelectorAll(".main__contents__item");
+        const moreBtn = document.querySelectorAll(".more__box__text");
         clickable.forEach(item => {
           item.addEventListener("click", e =>
             e.currentTarget.lastChild.submit()
           );
         });
+        moreBtn.forEach(item => item.addEventListener("click", e => e.target.nextSibling.submit()));
         hideSpinner(".sk-chase");
       })();
-      
-      
     </script>
   </body>
 </html>

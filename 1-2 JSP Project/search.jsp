@@ -41,7 +41,7 @@
     </header>
     <nav>
         <a href="./index.jsp" class="nav__item">
-          <div class="nav__box active">
+          <div class="nav__box">
             <i class="fas fa-home"></i>
             <span class="nav__text">홈</span>
           </div>
