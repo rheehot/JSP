@@ -33,9 +33,7 @@
           <span><i class="fas fa-search"></i></span>
         </div>
       </div>
-      <div class="header__column" id="loginStatus">
-        
-      </div>
+      <div class="header__column" id="loginStatus"></div>
     </header>
     <nav>
       <a href="./index.jsp" class="nav__item">
@@ -91,7 +89,7 @@
         </form>
       </div>
     </nav>
-    <main id="search">
+    <main id="list">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
@@ -125,7 +123,7 @@
         headerChange("./admin.jsp", "Admin");
         headerChange("./jsp/handleLogout.jsp", "Logout");
       } else if (loggedUser !== "null" && isAdmin !== "true") {
-        headerChange("./profile.html", "My Profile");
+        headerChange("./profile.jsp", "My Profile");
         headerChange("./jsp/handleLogout.jsp", "Logout");
       } else {
         headerChange("./login.jsp", "Sign In");

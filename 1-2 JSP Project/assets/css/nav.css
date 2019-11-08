@@ -1,6 +1,5 @@
 nav {
   position: fixed;
-  margin-top: 50px;
   left: 0px;
   width: 72px;
   height: calc(100vh - 50px);

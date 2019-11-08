@@ -35,65 +35,63 @@ pageEncoding="UTF-8"%>
           <span><i class="fas fa-search"></i></span>
         </div>
       </div>
-      <div class="header__column" id="loginStatus">
-        
-      </div>
+      <div class="header__column" id="loginStatus"></div>
     </header>
 
     <nav>
-        <a href="./index.jsp" class="nav__item">
-          <div class="nav__box active">
-            <i class="fas fa-home"></i>
-            <span class="nav__text">홈</span>
-          </div>
-        </a>
-        <div class="nav__item">
-          <div class="nav__box" id="popular">
-            <i class="fas fa-fire"></i>
-            <span class="nav__text">인기</span>
-          </div>
-          <form action="./list.jsp">
-              <input type="hidden" name="title" value="popular">
-          </form>
+      <a href="./index.jsp" class="nav__item">
+        <div class="nav__box active">
+          <i class="fas fa-home"></i>
+          <span class="nav__text">홈</span>
         </div>
-        <div class="nav__item">
-          <div class="nav__box" id="nowPlaying">
-            <i class="fas fa-clock"></i>
-            <span class="nav__text">상영중</span>
-          </div>
-          <form action="./list.jsp">
-              <input type="hidden" name="title" value="nowPlaying">
-          </form>
+      </a>
+      <div class="nav__item">
+        <div class="nav__box" id="popular">
+          <i class="fas fa-fire"></i>
+          <span class="nav__text">인기</span>
         </div>
-        <div class="nav__item">
-          <div class="nav__box" id="topRated">
-            <i class="fas fa-star"></i>
-            <span class="nav__text">높은평점</span>
-          </div>
-          <form action="./list.jsp">
-              <input type="hidden" name="title" value="topRated">
-          </form>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="popular">
+        </form>
+      </div>
+      <div class="nav__item">
+        <div class="nav__box" id="nowPlaying">
+          <i class="fas fa-clock"></i>
+          <span class="nav__text">상영중</span>
         </div>
-        <div class="nav__item">
-          <div class="nav__box" id="upComing">
-            <i class="fas fa-exclamation"></i>
-            <span class="nav__text">개봉예정</span>
-          </div>
-          <form action="./list.jsp">
-              <input type="hidden" name="title" value="upComing">
-          </form>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="nowPlaying">
+        </form>
+      </div>
+      <div class="nav__item">
+        <div class="nav__box" id="topRated">
+          <i class="fas fa-star"></i>
+          <span class="nav__text">높은평점</span>
         </div>
-          </div>
-        <div class="nav__item">
-          <div class="nav__box" id="like">
-            <i class="fas fa-thumbs-up"></i>
-            <span class="nav__text">좋아요</span>
-          </div>
-          <form action="./list.jsp">
-              <input type="hidden" name="title" value="like">
-          </form>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="topRated">
+        </form>
+      </div>
+      <div class="nav__item">
+        <div class="nav__box" id="upComing">
+          <i class="fas fa-exclamation"></i>
+          <span class="nav__text">개봉예정</span>
         </div>
-      </nav>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="upComing">
+        </form>
+      </div>
+        </div>
+      <div class="nav__item">
+        <div class="nav__box" id="like">
+          <i class="fas fa-thumbs-up"></i>
+          <span class="nav__text">좋아요</span>
+        </div>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="like">
+        </form>
+      </div>
+    </nav>
     <main id="home">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
@@ -129,7 +127,7 @@ pageEncoding="UTF-8"%>
         headerChange("./admin.jsp", "Admin");
         headerChange("./jsp/handleLogout.jsp", "Logout");
       } else if(loggedUser !== "null" && isAdmin !== "true") {
-        headerChange("./profile.html", "My Profile");
+        headerChange("./profile.jsp", "My Profile");
         headerChange("./jsp/handleLogout.jsp", "Logout");
       }else {
         headerChange("./login.jsp", "Sign In");
@@ -141,7 +139,7 @@ pageEncoding="UTF-8"%>
         const { results: topRated } = await getTopRated();
         const { results: upcoming } = await getUpcoming();
         const { results: similar } = await getSimilar(475557);
-        paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화", "like");
+        paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화 --- ( 입력 : 조커 )", "like");
         paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
         paintPosters(upcoming, "개봉 예정", "upComing");
         paintPosters(popular, "인기있는", "popular");

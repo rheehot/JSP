@@ -14,15 +14,17 @@ pageEncoding="UTF-8"%>
     <title>Document</title>
   </head>
   <body>
-    <% String isError = (String) session.getAttribute("passwordError");
-      String userEmail= (String) session.getAttribute("user.email");
-      String isAdmin = (String) session.getAttribute("isAdmin"); %>
+    <% String userEmail= (String) session.getAttribute("user.email"); String
+    isAdmin = (String) session.getAttribute("isAdmin");
+    session.removeAttribute("passwordError"); %>
     <header>
       <div class="header__column">
         <a href="./index.jsp">
-          <span>
-            <i class="fab fa-audible fa-2x"></i>
-          </span>
+          <img
+            src="./assets/image/logo.png"
+            alt="logo"
+            style="width: 130px; height: auto;"
+          />
         </a>
       </div>
       <div class="header__column">
@@ -37,88 +39,94 @@ pageEncoding="UTF-8"%>
     </header>
     <nav>
       <a href="./index.jsp" class="nav__item">
-        <div class="nav__box">
+      <div class="nav__box active">
           <i class="fas fa-home"></i>
           <span class="nav__text">홈</span>
-        </div>
+      </div>
       </a>
       <div class="nav__item">
-        <div class="nav__box" id="popular">
+      <div class="nav__box" id="popular">
           <i class="fas fa-fire"></i>
           <span class="nav__text">인기</span>
-        </div>
-        <form action="./list.jsp">
-            <input type="hidden" name="title" value="popular">
-        </form>
+      </div>
+      <form action="./list.jsp">
+          <input type="hidden" name="title" value="popular">
+      </form>
       </div>
       <div class="nav__item">
-        <div class="nav__box" id="nowPlaying">
+      <div class="nav__box" id="nowPlaying">
           <i class="fas fa-clock"></i>
           <span class="nav__text">상영중</span>
-        </div>
-        <form action="./list.jsp">
-            <input type="hidden" name="title" value="nowPlaying">
-        </form>
+      </div>
+      <form action="./list.jsp">
+          <input type="hidden" name="title" value="nowPlaying">
+      </form>
       </div>
       <div class="nav__item">
-        <div class="nav__box" id="topRated">
+      <div class="nav__box" id="topRated">
           <i class="fas fa-star"></i>
           <span class="nav__text">높은평점</span>
-        </div>
-        <form action="./list.jsp">
-            <input type="hidden" name="title" value="topRated">
-        </form>
+      </div>
+      <form action="./list.jsp">
+          <input type="hidden" name="title" value="topRated">
+      </form>
       </div>
       <div class="nav__item">
-        <div class="nav__box" id="upComing">
+      <div class="nav__box" id="upComing">
           <i class="fas fa-exclamation"></i>
           <span class="nav__text">개봉예정</span>
-        </div>
-        <form action="./list.jsp">
-            <input type="hidden" name="title" value="upComing">
-        </form>
       </div>
-        </div>
+      <form action="./list.jsp">
+          <input type="hidden" name="title" value="upComing">
+      </form>
+      </div>
+      </div>
       <div class="nav__item">
-        <div class="nav__box" id="like">
+      <div class="nav__box" id="like">
           <i class="fas fa-thumbs-up"></i>
           <span class="nav__text">좋아요</span>
-        </div>
-        <form action="./list.jsp">
-            <input type="hidden" name="title" value="like">
-        </form>
+      </div>
+      <form action="./list.jsp">
+          <input type="hidden" name="title" value="like">
+      </form>
       </div>
     </nav>
-    <main id="login">
-      <div class="login__column">
-        <a href="./index.jsp"> <i class="fab fa-audible fa-3x"></i></a>
+    <main id="detail">
+      <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
       </div>
-      <div class="login__column" id="isError">
-        <span>polyMovie에 로그인</span>
-      </div>
-      <div class="login__column">
-        <form action="./jsp/handleLogin.jsp" method="post">
-          <div class="login__form__box">
-            <label for="email">Email address</label>
-            <input type="email" name="email" required />
-            <label for="password">Password</label>
-            <input type="password" name="password" required />
-            <input type="submit" value="로그인" />
+      <span style="margin-left: 20px;">Building</span>
+      <div class="content">
+        <div class="detail__content__cover" id="poster"></div>
+        <div class="detail__content__data">
+          <div class="detail__content__data__titleBox">
+            <div class="detail__content__data__title" id="title">
+              data.title
+            </div>
+            <div class="detail__content__data__likeBox">
+              <div class="detail__content__data__like">likeBtn |</div>
+              <div class="detail__content__data__disLike">|dislikeBtn</div>
+            </div>
           </div>
-        </form>
-      </div>
-      <div class="login__column">
-        <div class="login__signIn__box">
-          <span>처음이신가요? <a href="./signIn.jsp">회원가입.</a></span>
+
+          <div class="detail__content__data__description" id="description">
+            data.description
+          </div>
+          <div class="detail__content__data__comments">comments</div>
         </div>
       </div>
     </main>
     <script src="./assets/js/util.js"></script>
     <script src="assets/js/search.js"></script>
+    <script src="./assets/js/util.js"></script>
     <script>
       const nav = document.querySelectorAll(".nav__item");
       nav.forEach(item => item.addEventListener("click", (e) => e.currentTarget.lastElementChild.submit()));
-
       const headerChange = (href, text) => {
         const target = document.getElementById("loginStatus");
         const header__item = document.createElement("div");
@@ -133,21 +141,14 @@ pageEncoding="UTF-8"%>
       console.log(isAdmin);
       const loggedUser = "<%=userEmail%>";
       console.log(loggedUser);
-      if(isAdmin === "true" && loggedUser !== "null"){
+      if (isAdmin === "true" && loggedUser !== "null") {
         headerChange("./admin.jsp", "Admin");
         headerChange("./jsp/handleLogout.jsp", "Logout");
-      } else if(loggedUser !== "null" && isAdmin !== "true") {
+      } else if (loggedUser !== "null" && isAdmin !== "true") {
         headerChange("./profile.jsp", "My Profile");
         headerChange("./jsp/handleLogout.jsp", "Logout");
-      }else {
+      } else {
         headerChange("./login.jsp", "Sign In");
-      }
-      const isError = "<%= isError %>";
-      if (isError === "true") {
-        const target = document.getElementById("isError");
-        const p = document.createElement("p");
-        p.innerText = "로그인 정보가 일치하지 않습니다.";
-        target.appendChild(p);
       }
     </script>
   </body>

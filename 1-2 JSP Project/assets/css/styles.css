@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
-@import url("./theme.css");
 @import url("./util/reset.css");
+@import url("./theme.css");
 @import url("./header.css");
-@import url("./home_main.css");
-@import url("./search_main.css");
 @import url("./nav.css");
 @import url("./loader.css");
+@import url("./home_main.css");
+@import url("./search_main.css");
 @import url("./detail.css");
-@import url("./login.css");
-@import url("./admin_main.css");
+@import url("./login_main.css");
+@import url("./signin_main.css");
 @import url("./list.css");
+@import url("./admin_main.css");
+@import url("./profile.css");
 
 * {
   box-sizing: border-box;
@@ -19,25 +21,30 @@ body {
   font-family: "Open Sans", sans-serif;
   background-color: var(--body__bgColor);
   width: 100%;
+  height: 100vh;
+  padding-top: 50px;
   color: var(--body__defaultColor);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 72px;
 }
 a {
   color: var(--body__defaultColor);
   text-decoration: none;
 }
+@media screen and (max-width: 1250px) {
+  body {
+    padding-left: 92px;
+  }
+}
 @media screen and (max-width: 735px) {
   nav {
     display: none;
   }
-  #home {
-    padding-left: 25px;
-  }
-  #admin {
-    padding-left: 25px;
+  body {
+    padding-left: 20px;
   }
   header .header__column:nth-child(2n) input[type="text"] {
     width: 130px;

@@ -47,6 +47,7 @@ pageEncoding="UTF-8"%>
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
+      <span style="margin-left: 20px;">Building</span>
       <div class="content">
         <div class="detail__content__cover" id="poster"></div>
         <div class="detail__content__data">
@@ -88,14 +89,14 @@ pageEncoding="UTF-8"%>
         headerChange("./admin.jsp", "Admin");
         headerChange("./jsp/handleLogout.jsp", "Logout");
       } else if (loggedUser !== "null" && isAdmin !== "true") {
-        headerChange("./profile.html", "My Profile");
+        headerChange("./profile.jsp", "My Profile");
         headerChange("./jsp/handleLogout.jsp", "Logout");
       } else {
         headerChange("./login.jsp", "Sign In");
       }
       (async function getData() {
         document.querySelector(".content").style.display = "none";
-        const data = await getDetail(location.search.replace("?id=", ""));
+        //const data = await getDetail(location.search.replace("?id=", ""));
         console.log(data);
         document.getElementById(
           "poster"

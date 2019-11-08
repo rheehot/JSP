@@ -1,13 +1,12 @@
 #home {
-  max-width: 1200px;
+  max-width: 1150px;
   width: 100%;
   height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 70px;
-  padding-left: 78px;
+  padding-top: 20px;
 }
 #home .main__column {
   display: flex;
@@ -26,8 +25,8 @@
 #home .main__contents__item {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   margin-right: 20px;
   margin-top: 20px;
   cursor: pointer;
@@ -50,8 +49,6 @@
 #home .main__contents__textBox {
   position: absolute;
   opacity: 0;
-  justify-content: center;
-  align-items: center;
   bottom: 10%;
   right: 23%;
   transition: all 0.35s ease-in-out;
