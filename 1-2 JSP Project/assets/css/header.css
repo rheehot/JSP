@@ -22,12 +22,12 @@ header .header__column:first-child .fa-home {
   cursor: pointer;
 }
 
-header .header__column:nth-child(2n) {
+header .header__column:nth-child(2) {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-header .header__column:nth-child(2n) input[type="text"] {
+header .header__column:nth-child(2) input[type="text"] {
   width: 450px;
   height: 30px;
   padding-left: 10px;
@@ -36,10 +36,10 @@ header .header__column:nth-child(2n) input[type="text"] {
   font-size: 15px;
   color: var(--header__input__focusColor);
 }
-header .header__column:nth-child(2n) input[type="text"]:focus {
+header .header__column:nth-child(2) input[type="text"]:focus {
   outline: none;
 }
-header .header__column:nth-child(2n) .search__box {
+header .header__column:nth-child(2) .search__box {
   padding: 7px 20px;
   background-color: var(--header__input__btn__bgColor);
   display: flex;
@@ -47,17 +47,27 @@ header .header__column:nth-child(2n) .search__box {
   align-items: center;
   cursor: pointer;
 }
-header .header__column:nth-child(2n) .fa-search {
+header .header__column:nth-child(2) .fa-search {
   color: var(--header__input__btnColor);
 }
-
 header .header__column:last-child {
   display: flex;
   margin-right: 15px;
 }
-
 header .header__column:last-child a {
   color: var(--header__aColor);
   margin-right: 15px;
   text-decoration: none;
+}
+
+/* Mobile responsive */
+header #loginStatus .mobile__search {
+  display: none;
+  color: #fff;
+  cursor: pointer;
+}
+header .header__column:nth-child(2) .arrow__box{
+  display: none;
+  margin: 0 20px;
+  cursor: pointer;
 }

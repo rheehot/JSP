@@ -20,7 +20,7 @@
   		session.removeAttribute("passwordError");
   	%>
     <header>
-      <div class="header__column">
+      <div class="header__column" id="logo">
         <a href="./index.jsp">
           <span>
             <i class="fab fa-audible fa-2x"></i>
@@ -28,14 +28,21 @@
         </a>
       </div>
       <div class="header__column">
-        <form action="./search.jsp">
-          <input type="text" name="term" placeholder="검색" />
+        <div class="arrow__box" id="backBtn">
+            <i class="fas fa-arrow-left fa-lg"></i>
+        </div>
+        <form action="./search.jsp" id="form">
+          <input type="text" name="term" placeholder="검색" id="input" />
         </form>
-        <div class="search__box">
+        <div class="search__box" id="form__btn">
           <span><i class="fas fa-search"></i></span>
+        </div>          
+      </div>
+      <div class="header__column" id="loginStatus">
+        <div class="mobile__search">
+          <i class="fas fa-search mobile__searchIcon"></i>
         </div>
       </div>
-      <div class="header__column" id="loginStatus"></div>
     </header>
     <nav>
         <a href="./index.jsp" class="nav__item">

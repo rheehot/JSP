@@ -39,14 +39,29 @@ a {
     padding-left: 92px;
   }
 }
-@media screen and (max-width: 735px) {
+@media screen and (max-width: 740px) {
   nav {
     display: none;
   }
   body {
     padding-left: 20px;
   }
-  header .header__column:nth-child(2n) input[type="text"] {
-    width: 130px;
+  header .header__column:nth-child(2) input[type="text"] {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 500px) {
+  header #form,
+  header #form__btn {
+    display: none;
+  }
+  header .header__column:nth-child(2) input[type="text"] {
+    width: 70vw;
+  }
+  header #loginStatus .mobile__search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
   }
 }
