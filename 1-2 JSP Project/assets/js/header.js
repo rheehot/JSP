@@ -14,7 +14,7 @@ const headerUserChange = (email, admin) => {
     headerChange("./admin.jsp", "Admin");
     headerChange("./jsp/handleLogout.jsp", "Logout");
   } else if (email !== "null" && admin !== "true") {
-    headerChange("./profile.jsp", "My Profile");
+    headerChange("./profile.jsp", "Profile");
     headerChange("./jsp/handleLogout.jsp", "Logout");
   } else {
     headerChange("./login.jsp", "Sign In");

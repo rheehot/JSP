@@ -43,9 +43,6 @@ pageEncoding="UTF-8"%>
         <div class="mobile__search">
           <i class="fas fa-search mobile__searchIcon"></i>
         </div>
-        <div class="header__item">
-          <a href="./whatsNew.jsp">Help</a>
-        </div>
       </div>
     </header>
 
@@ -102,6 +99,15 @@ pageEncoding="UTF-8"%>
             <input type="hidden" name="title" value="like">
         </form>
       </div>
+      <div class="nav__item">
+        <div class="nav__box" id="help">
+          <i class="fas fa-question"></i>
+          <span class="nav__text">도움말</span>
+        </div>
+        <form action="./whatsNew.jsp">
+            <input type="hidden">
+        </form>
+      </div>
     </nav>
     <main id="home">
       <div class="sk-chase">
@@ -112,6 +118,7 @@ pageEncoding="UTF-8"%>
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
+      <div class="networkError">Network Error</div>
     </main>
 
     <script src="./assets/js/header.js"></script>
@@ -121,25 +128,31 @@ pageEncoding="UTF-8"%>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
       (async function getData() {
-        const { results: nowPlaying } = await getNowPlaying();
-        const { results: popular } = await getPopular();
-        const { results: topRated } = await getTopRated();
-        const { results: upcoming } = await getUpcoming();
-        const { results: similar } = await getSimilar(475557);
-        paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화 --- ( 입력 : 조커 )", "like");
-        paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
-        paintPosters(upcoming, "개봉 예정", "upComing");
-        paintPosters(popular, "인기있는", "popular");
-        paintPosters(topRated, "높은 평점", "topRated");
-        const clickable = document.querySelectorAll(".main__contents__item");
-        const moreBtn = document.querySelectorAll(".more__box__text");
-        clickable.forEach(item => {
-          item.addEventListener("click", e =>
-            e.currentTarget.lastChild.submit()
-          );
-        });
-        moreBtn.forEach(item => item.addEventListener("click", e => e.target.nextSibling.submit()));
-        hideSpinner(".sk-chase");
+        try{
+          const { results: nowPlaying } = await getNowPlaying();
+          const { results: popular } = await getPopular();
+          const { results: topRated } = await getTopRated();
+          const { results: upcoming } = await getUpcoming();
+          const { results: similar } = await getSimilar(475557);
+          paintPosters(similar, "내가 좋아하는 영화와 비슷한 영화 --- ( 입력 : 조커 )", "like");
+          paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
+          paintPosters(upcoming, "개봉 예정", "upComing");
+          paintPosters(popular, "인기있는", "popular");
+          paintPosters(topRated, "높은 평점", "topRated");
+          const clickable = document.querySelectorAll(".main__contents__item");
+          const moreBtn = document.querySelectorAll(".more__box__text");
+          clickable.forEach(item => {
+            item.addEventListener("click", e =>
+              e.currentTarget.lastChild.submit()
+            );
+          });
+          moreBtn.forEach(item => item.addEventListener("click", e => e.target.nextSibling.submit()));
+        } catch(e) {
+          console.log(e);
+          document.querySelector(".networkError").style.display = "flex";
+        } finally {
+          hideSpinner(".sk-chase");
+        }
       })();
     </script>
   </body>

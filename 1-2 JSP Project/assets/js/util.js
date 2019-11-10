@@ -162,7 +162,6 @@ const searchMovies = (data, str) => {
     message.className = "main__message";
     message.innerText = "결과 없음";
     mainColumn.appendChild(message);
-    console.log(message);
   }
   mainColumn.appendChild(mainContents);
   main.appendChild(mainColumn);
@@ -224,8 +223,7 @@ const hideSpinner = query => {
   const main = spinner.parentElement;
   spinner.style.display = "none";
   if (location.search.includes("term") !== true) {
-    main.style.justifyContent = "left";
-    main.style.alignItems = "left";
+    main.style.justifyContent = "flex-start";
   } else {
     main.style.justifyContent = "flex-start";
     main.style.alignItems = "flex-start";

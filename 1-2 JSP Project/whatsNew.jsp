@@ -106,6 +106,15 @@
             <input type="hidden" name="title" value="like">
         </form>
       </div>
+      <div class="nav__item">
+        <div class="nav__box active" id="help">
+          <i class="fas fa-question"></i>
+          <span class="nav__text">도움말</span>
+        </div>
+        <form action="./whatsNew.jsp">
+            <input type="hidden">
+        </form>
+      </div>
     </nav>
     <main id="whatsNew" style="color: #eee; padding-top: 30px;">
         <h1 style="font-size: 40px; margin-bottom: 25px;">What's new?</h1>

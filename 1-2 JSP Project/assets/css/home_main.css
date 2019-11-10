@@ -1,5 +1,5 @@
 #home {
-  max-width: 1150px;
+  max-width: 1105px;
   width: 100%;
   height: calc(100vh - 50px);
   display: flex;
@@ -27,9 +27,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
   margin-top: 20px;
   cursor: pointer;
+}
+#home .main__contents__item:not(:last-child) {
+  margin-right: 20px;
 }
 #home .main__contents__item img {
   width: 120px;

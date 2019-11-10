@@ -95,6 +95,15 @@
             <input type="hidden" name="title" value="like">
         </form>
       </div>
+      <div class="nav__item">
+        <div class="nav__box" id="help">
+          <i class="fas fa-question"></i>
+          <span class="nav__text">도움말</span>
+        </div>
+        <form action="./whatsNew.jsp">
+            <input type="hidden">
+        </form>
+      </div>
     </nav>
     <main id="list">
       <div class="sk-chase">
@@ -105,6 +114,7 @@
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
+      <div class="networkError">Network Error</div>
     </main>
     
     <script src="./assets/js/header.js"></script>
@@ -118,31 +128,37 @@
       navEvent(term);
       
       (async function getData() {
-        if(term === "popular"){
-          const { results } = await getPopular();
-          listMovies(results, "인기있는");
+        try{
+          if(term === "popular"){
+            const { results } = await getPopular();
+            listMovies(results, "인기있는");
+          }
+          else if(term === "nowPlaying"){
+            const { results } = await getNowPlaying();
+            listMovies(results, "현재 상영 중");
+          }
+          else if(term === "topRated"){
+            const { results } = await getTopRated();
+            listMovies(results, "높은평점");
+          }
+          else if(term === "upComing"){
+            const { results } = await getUpcoming();
+            listMovies(results, "개봉예정");
+          }
+          else if(term === "like"){}
+          
+          const clickable = document.querySelectorAll(".main__contents__item");
+          clickable.forEach(item => {
+            item.addEventListener("click", e =>
+              e.currentTarget.lastChild.submit()
+            );
+          });
+        } catch(e){
+          console.log(e);
+          document.querySelector(".networkError").style.display = "flex";
+        } finally{
+          hideSpinner(".sk-chase");
         }
-        else if(term === "nowPlaying"){
-          const { results } = await getNowPlaying();
-          listMovies(results, "현재 상영 중");
-        }
-        else if(term === "topRated"){
-          const { results } = await getTopRated();
-          listMovies(results, "높은평점");
-        }
-        else if(term === "upComing"){
-          const { results } = await getUpcoming();
-          listMovies(results, "개봉예정");
-        }
-        else if(term === "like"){}
-
-        const clickable = document.querySelectorAll(".main__contents__item");
-        clickable.forEach(item => {
-          item.addEventListener("click", e =>
-            e.currentTarget.lastChild.submit()
-          );
-        });
-        hideSpinner(".sk-chase");
       })();
     </script>
   </body>

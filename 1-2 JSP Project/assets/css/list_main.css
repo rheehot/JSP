@@ -1,4 +1,4 @@
-#search {
+#list {
   max-width: 1135px;
   width: 100%;
   height: calc(100vh - 50px);
@@ -6,29 +6,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 40px;
 }
-#search .main__column {
+#list .main__column {
   display: flex;
   flex-direction: column;
 }
 
-#search .main__sectionText {
+#list .main__sectionText {
   font-size: 23px;
   margin-bottom: 10px;
   padding-left: 5px;
 }
-#search .main__message {
+#list .main__message {
   font-size: 18px;
   padding-left: 5px;
   margin-top: 25px;
   color: red;
 }
-#search .main__contents {
+#list .main__contents {
   display: flex;
   flex-wrap: wrap;
 }
-#search .main__contents__item {
+#list .main__contents__item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,22 +37,22 @@
   margin-top: 20px;
   cursor: pointer;
 }
-#search .main__contents__item img {
+#list .main__contents__item img {
   width: 120px;
   height: 180px;
   border-radius: 15px;
   transition: all 0.3s ease-in-out;
 }
 
-#search .main__contents__imgBox {
+#list .main__contents__imgBox {
   position: relative;
   margin-bottom: 10px;
 }
-#search .posterTitle {
+#list .posterTitle {
   font-size: 13px;
 }
 
-#search .main__contents__textBox {
+#list .main__contents__textBox {
   position: absolute;
   opacity: 0;
   justify-content: center;
@@ -61,20 +61,20 @@
   right: 23%;
   transition: all 0.35s ease-in-out;
 }
-#search .main__contents__textBox .fa-star {
+#list .main__contents__textBox .fa-star {
   font-size: 12px;
   color: var(--home__starColor);
   margin-right: 5px;
 }
-#search .main__contents__imgBox__text {
+#list .main__contents__imgBox__text {
   font-size: 14px;
 }
-#search
+#list
   .main__contents__item
   .main__contents__imgBox:hover
   .main__contents__textBox {
   opacity: 1;
 }
-#search .main__contents__item .main__contents__imgBox:hover img {
+#list .main__contents__item .main__contents__imgBox:hover img {
   opacity: 0.3;
 }

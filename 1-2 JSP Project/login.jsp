@@ -95,6 +95,15 @@ pageEncoding="UTF-8"%>
             <input type="hidden" name="title" value="like">
         </form>
       </div>
+      <div class="nav__item">
+        <div class="nav__box" id="help">
+          <i class="fas fa-question"></i>
+          <span class="nav__text">도움말</span>
+        </div>
+        <form action="./whatsNew.jsp">
+            <input type="hidden">
+        </form>
+      </div>s
     </nav>
     <main id="login">
       <div class="login__column">
