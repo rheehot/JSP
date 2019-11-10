@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+.loggedUser {
+  display: none;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   background-color: var(--body__bgColor);
@@ -44,7 +48,11 @@ a {
     display: none;
   }
   body {
-    padding-left: 20px;
+    padding: 50px 20px 0 20px;
+  }
+  header #form,
+  header #form__btn {
+    display: flex;
   }
   header .header__column:nth-child(2) input[type="text"] {
     width: 200px;

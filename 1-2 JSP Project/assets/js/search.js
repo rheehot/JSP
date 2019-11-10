@@ -10,17 +10,27 @@ const header__backBtn = document.getElementById("backBtn");
 let isClicked = false;
 
 const handleClick = e => {
-  if (e.target.previousElementSibling !== null)
+  if (e.target.previousElementSibling !== null) {
+    if (!e.target.previousElementSibling["0"].value) {
+      alert("검색어를 입력하세요");
+      return;
+    }
     e.target.previousElementSibling.submit();
-  if (e.target.ownerDocument.forms[0] !== null)
+  }
+
+  if (e.target.ownerDocument.forms[0] !== null) {
+    if (!e.currentTarget.previousElementSibling.firstElementChild.value) {
+      alert("검색어를 입력하세요");
+      return;
+    }
     e.target.ownerDocument.forms[0].submit();
+  }
   header__form.style.display = "none";
   header__btn.style.display = "none";
   mobileSearchBtn.style.display = "flex";
 };
 const mobileHandleClick = e => {
   e.preventDefault();
-
   const afterClick = () => {
     isClicked = true;
     header__btn.style.display = "flex";
@@ -44,7 +54,6 @@ const mobileHandleClick = e => {
     restore();
   }
 };
-
 function init() {
   searchBtn.addEventListener("click", handleClick);
   mobileSearchBtn.addEventListener("click", mobileHandleClick);

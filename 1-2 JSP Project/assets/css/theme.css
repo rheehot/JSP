@@ -1,12 +1,12 @@
 :root {
   --body__bgColor: #1f1f1f;
-  --body__defaultColor: #fff;
+  --body__defaultColor: #eee;
 
   --header__bgColor: #282828;
-  --header__aColor: #fff;
+  --header__aColor: #eee;
   --header__input__bgColor: #121212;
   --header__input__borderColor: #303030;
-  --header__input__focusColor: #fff;
+  --header__input__focusColor: #eee;
   --header__input__btn__bgColor: #393939;
   --header__input__btnColor: #777777;
 

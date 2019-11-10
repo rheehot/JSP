@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
           <i class="fas fa-arrow-left fa-lg"></i>
         </div>
         <form action="./search.jsp" id="form">
-          <input type="text" name="term" placeholder="검색" id="input" />
+          <input type="text" name="term" placeholder="검색" id="input" required />
         </form>
         <div class="search__box" id="form__btn">
           <span><i class="fas fa-search"></i></span>
@@ -42,6 +42,60 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
     </header>
+    <nav>
+      <a href="./index.jsp" class="nav__item">
+        <div class="nav__box">
+          <i class="fas fa-home"></i>
+          <span class="nav__text">홈</span>
+        </div>
+      </a>
+      <div class="nav__item">
+        <div class="nav__box" id="popular">
+          <i class="fas fa-fire"></i>
+          <span class="nav__text">인기</span>
+        </div>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="popular">
+        </form>
+      </div>
+      <div class="nav__item">
+        <div class="nav__box" id="nowPlaying">
+          <i class="fas fa-clock"></i>
+          <span class="nav__text">상영중</span>
+        </div>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="nowPlaying">
+        </form>
+      </div>
+      <div class="nav__item">
+        <div class="nav__box" id="topRated">
+          <i class="fas fa-star"></i>
+          <span class="nav__text">높은평점</span>
+        </div>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="topRated">
+        </form>
+      </div>
+      <div class="nav__item">
+        <div class="nav__box" id="upComing">
+          <i class="fas fa-exclamation"></i>
+          <span class="nav__text">개봉예정</span>
+        </div>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="upComing">
+        </form>
+      </div>
+        </div>
+      <div class="nav__item">
+        <div class="nav__box" id="like">
+          <i class="fas fa-thumbs-up"></i>
+          <span class="nav__text">좋아요</span>
+        </div>
+        <form action="./list.jsp">
+            <input type="hidden" name="title" value="like">
+        </form>
+      </div>
+    </nav>
 
     <main id="detail">
       <div class="sk-chase">
@@ -52,62 +106,54 @@ pageEncoding="UTF-8"%>
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
-      <span style="margin-left: 20px;">Building</span>
       <div class="content">
-        <div class="detail__content__cover" id="poster"></div>
-        <div class="detail__content__data">
-          <div class="detail__content__data__titleBox">
-            <div class="detail__content__data__title" id="title">
-              data.title
-            </div>
-            <div class="detail__content__data__likeBox">
-              <div class="detail__content__data__like">likeBtn |</div>
-              <div class="detail__content__data__disLike">|dislikeBtn</div>
-            </div>
-          </div>
-
-          <div class="detail__content__data__description" id="description">
-            data.description
-          </div>
-          <div class="detail__content__data__comments">comments</div>
+        <div class="release">
+          <span id="detail__release"></span>
         </div>
+        <div class="runtime">
+          <span id="detail__runtime"></span>
+        </div>
+        <div class="title">
+          <span id="detail__title"></span>
+        </div>
+        <div class="posterPath">
+          <span id="detail__posterPath"></span>
+        </div>
+        <div class="overview">
+          <span id="detail__overview"></span>
+        </div>
+        <div class="genres">
+          <span>genres : </span>
+        </div>
+        <div class="imdb">
+          <span id="detail__imdb"></span>
+        </div>
+        <span style="font-size: 30px; color: peru; margin: 10px auto;">만드는 중</span>
       </div>
     </main>
-
+    <script src="./assets/js/header.js"></script>
+    <script src="./assets/js/nav.js"></script>
+    <script src="assets/js/search.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>
-      const headerChange = (href, text) => {
-        const target = document.getElementById("loginStatus");
-        const header__item = document.createElement("div");
-        const anchor = document.createElement("a");
-        header__item.className = "header__item";
-        anchor.href = href;
-        anchor.innerText = text;
-        header__item.appendChild(anchor);
-        target.appendChild(header__item);
-      };
-      const isAdmin = "<%=isAdmin%>";
-      console.log(isAdmin);
-      const loggedUser = "<%=userEmail%>";
-      console.log(loggedUser);
-      if (isAdmin === "true" && loggedUser !== "null") {
-        headerChange("./admin.jsp", "Admin");
-        headerChange("./jsp/handleLogout.jsp", "Logout");
-      } else if (loggedUser !== "null" && isAdmin !== "true") {
-        headerChange("./profile.jsp", "My Profile");
-        headerChange("./jsp/handleLogout.jsp", "Logout");
-      } else {
-        headerChange("./login.jsp", "Sign In");
-      }
+      headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
       (async function getData() {
         document.querySelector(".content").style.display = "none";
-        //const data = await getDetail(location.search.replace("?id=", ""));
+        const data = await getDetail(location.search.replace("?id=", ""));
         console.log(data);
-        document.getElementById(
-          "poster"
-        ).style.backgroundImage = `https://image.tmdb.org/t/p/original${data.poster_path}`;
-        document.getElementById("title").innerText = `${data.title}`;
-        document.getElementById("description").innerText = `${data.overview}`;
+        document.getElementById("detail__release").innerText = "release date : " + data.release_date;
+        document.getElementById("detail__runtime").innerText = "runtime : " + data.runtime + " mins";
+        document.getElementById("detail__title").innerText = "title : " + data.title;
+        document.getElementById("detail__posterPath").innerText =
+          "poster_path : " + data.poster_path;
+        document.getElementById("detail__overview").innerText = "overview : " + data.overview;
+        const genres = document.querySelector(".genres");
+        data.genres.forEach(item => {
+          const span = document.createElement("span");
+          span.innerText = item.name + " ";
+          genres.appendChild(span);
+        });
+        document.getElementById("detail__imdb").innerText = "imdb_id : " + data.imdb_id;
         document.querySelector(".sk-chase").style.display = "none";
         document.querySelector(".content").style.display = "flex";
       })();

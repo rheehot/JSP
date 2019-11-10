@@ -222,7 +222,6 @@ const listMovies = (data, str) => {
 const hideSpinner = query => {
   const spinner = document.querySelector(`${query}`);
   const main = spinner.parentElement;
-  //console.log(main);
   spinner.style.display = "none";
   if (location.search.includes("term") !== true) {
     main.style.justifyContent = "left";

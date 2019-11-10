@@ -32,7 +32,7 @@
             <i class="fas fa-arrow-left fa-lg"></i>
         </div>
         <form action="./search.jsp" id="form">
-          <input type="text" name="term" placeholder="검색" id="input" />
+          <input type="text" name="term" placeholder="검색" id="input" required/>
         </form>
         <div class="search__box" id="form__btn">
           <span><i class="fas fa-search"></i></span>
@@ -46,7 +46,7 @@
     </header>
   <nav>
     <a href="./index.jsp" class="nav__item">
-    <div class="nav__box active">
+    <div class="nav__box">
         <i class="fas fa-home"></i>
         <span class="nav__text">홈</span>
     </div>
@@ -102,6 +102,11 @@
   <main id="signIn">
     <div class="signIn__border">
       <div class="signIn__column">
+        <a href="./index.jsp" class="signIn__title__first">
+          <span>
+            <i class="fab fa-audible fa-3x"></i>
+          </span>
+        </a>
         <span class="signIn__title__second">Create your account</span>
       </div>
       <form action="#" method="post" class="signIn__column">
@@ -117,43 +122,23 @@
           <label for="password">Password <span class="required">*</span></label>
           <input type="password" name="password" class="signIn__input" required />
         </div>
-        <input type="submit" value="Join">
-        <div class="signIn__footer">
-          <span>이미 회원인가요? <a href="./login.jsp">로그인</a></span>
+        <div class="signIn__inputBox">
+          <input type="submit" value="Join">
+        </div>
+        <div class="signIn__inputBox">
+          <span>이미 회원인가요? <a href="./login.jsp" class="signIn__aLogin">로그인</a></span>
         </div>
       </form>
     </div>
     
   </main>
 
-    <script src="./assets/js/util.js"></script>
-    <script src="assets/js/search.js"></script>
-    <script> 
-      const nav = document.querySelectorAll(".nav__item");
-      nav.forEach(item => item.addEventListener("click", (e) => e.currentTarget.lastElementChild.submit()));
-      const headerChange = (href, text) => {
-          const target = document.getElementById("loginStatus");
-          const header__item = document.createElement("div");
-          const anchor = document.createElement("a");
-          header__item.className = "header__item";
-          anchor.href = href;
-          anchor.innerText = text;
-          header__item.appendChild(anchor);
-          target.appendChild(header__item);
-        };
-        const isAdmin = "<%=isAdmin%>";
-        console.log(isAdmin);
-        const loggedUser = "<%=userEmail%>";
-        console.log(loggedUser);
-        if(isAdmin === "true" && loggedUser !== "null"){
-          headerChange("./admin.jsp", "Admin");
-          headerChange("./jsp/handleLogout.jsp", "Logout");
-        } else if(loggedUser !== "null" && isAdmin !== "true") {
-          headerChange("./profile.html", "My Profile");
-          headerChange("./jsp/handleLogout.jsp", "Logout");
-        }else {
-          headerChange("./login.jsp", "Sign In");
-        }
-    </script>
+  <script src="./assets/js/header.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="./assets/js/util.js"></script>
+  <script> 
+    headerUserChange("<%=userEmail%>", "<%=isAdmin%>");   
+  </script>
 </body>
 </html>
