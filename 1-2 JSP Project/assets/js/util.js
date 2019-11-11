@@ -219,13 +219,8 @@ const listMovies = (data, str) => {
   main.appendChild(mainColumn);
 };
 const hideSpinner = query => {
-  const spinner = document.querySelector(`${query}`);
-  const main = spinner.parentElement;
-  spinner.style.display = "none";
-  if (location.search.includes("term") !== true) {
-    main.style.justifyContent = "flex-start";
-  } else {
-    main.style.justifyContent = "flex-start";
-    main.style.alignItems = "flex-start";
-  }
+  const spinnerBox = document.querySelector(`${query}`);
+  const main = document.querySelector("main");
+  spinnerBox.style.display = "none";
+  main.style.opacity = "1";
 };

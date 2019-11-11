@@ -105,7 +105,7 @@
         </form>
       </div>
     </nav>
-    <main id="list">
+    <div class="loaderContainer">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
@@ -114,6 +114,8 @@
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
+    </div>
+    <main id="list">
       <div class="networkError">Network Error</div>
     </main>
     
@@ -123,7 +125,6 @@
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
-
       const term = location.search.replace("?title=", "");
       navEvent(term);
       
@@ -157,7 +158,7 @@
           console.log(e);
           document.querySelector(".networkError").style.display = "flex";
         } finally{
-          hideSpinner(".sk-chase");
+          hideSpinner(".loaderContainer");
         }
       })();
     </script>

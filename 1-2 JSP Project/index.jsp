@@ -109,7 +109,7 @@ pageEncoding="UTF-8"%>
         </form>
       </div>
     </nav>
-    <main id="home">
+    <div class="loaderContainer">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
@@ -118,6 +118,8 @@ pageEncoding="UTF-8"%>
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
+    </div>
+    <main id="home">
       <div class="networkError">Network Error</div>
     </main>
 
@@ -151,7 +153,7 @@ pageEncoding="UTF-8"%>
           console.log(e);
           document.querySelector(".networkError").style.display = "flex";
         } finally {
-          hideSpinner(".sk-chase");
+          hideSpinner(".loaderContainer");
         }
       })();
     </script>

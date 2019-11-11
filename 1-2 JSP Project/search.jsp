@@ -107,7 +107,7 @@
         </form>
       </div>
     </nav>
-    <main id="search">
+    <div class="loaderContainer">
       <div class="sk-chase">
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
@@ -116,6 +116,8 @@
         <div class="sk-chase-dot"></div>
         <div class="sk-chase-dot"></div>
       </div>
+    </div>
+    <main id="search">
       <div class="networkError">Network Error</div>
     </main>
     <script src="./assets/js/header.js"></script>
@@ -141,7 +143,7 @@
           console.log(e);
           document.querySelector(".networkError").style.display = "flex";
         } finally{
-          hideSpinner(".sk-chase");
+          hideSpinner(".loaderContainer");
         }
       })();
     </script>

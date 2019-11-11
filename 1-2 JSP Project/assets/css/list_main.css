@@ -5,8 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding-top: 40px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 #list .main__column {
   display: flex;

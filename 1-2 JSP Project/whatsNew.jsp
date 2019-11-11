@@ -120,13 +120,11 @@
         <h1 style="font-size: 40px; margin-bottom: 25px;">What's new?</h1>
         <div class="contents">
             <p><b style="color: orangered">주의사항 : </b>구형 브라우저에서 동작하지 않습니다.</p>
-            <p><b style="color: orangered;">Developing stuff : </b>Detail, My Profile</p>
-            <p><b>Used stacks : </b>HTML5, CSS3, ES6 (Not used CSS Framework)</p>
-            <p><b>Responsive Web : </b>브라우저를 창모드로 바꾼 뒤, 가로크기를 줄여보세요. 끝까지 줄인 다음, 검색 버튼을 눌러보세요.</p>
-            <p><b>Responsive Web 2 : </b>영화 리스트를 브라우저 크기에 따라 최적의 상태로 보여줍니다.</p>
-            <p><b>Login : </b> 로그인 기능</p>
-            <p><b>Admin and user : </b> admin으로 로그인 시, profile 대신 admin 바로가기 제공</p>
-            <p><b>Search : </b>영어, 한글검색 지원</p>
+            <p><b>Used stacks : </b>Only HTML5, CSS3, ES6 (Not used CSS Framework)</p>
+            <p><b>반응형 웹 : </b>모바일 UI 적용 → 브라우저 가로 크기를 줄여보세요</p>
+            <p><b>로그인 : </b> DB 연결 X</p>
+            <p><b>권한 부여 : </b> admin으로 로그인 시, profile 대신 admin 바로가기 제공</p>
+            <p><b>검색 : </b>영어, 한글검색 지원</p>
             <p><b>Navigation bar : </b> Home에서 더보기로 접근하는 대신, 바로 접근하세요.</p>
             <p><b>Indicator : </b>Data를 fetching하는 동안 로딩화면을 보여줍니다.</p>
             <div class="authBox" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -139,8 +137,8 @@
                 </div>
             </div>
         </div>
-        <footer style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px; color: #eee;">
-            <span style="font-size: 20px; margin-bottom: 20px;">궁금한 것은 질문하시면 답변 해드리겠습니다.</span>
+        <footer style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 30px; color: #eee;">
+            <span style="font-size: 20px;">궁금한 것은 질문하시면 답변 해드리겠습니다.</span>
             <!-- <span style="font-size: 17px;">개인적인 프로젝트 관련 상담도 받습니다.</span> -->
         </footer>
     </main>
