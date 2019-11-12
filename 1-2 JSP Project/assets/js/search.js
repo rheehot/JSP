@@ -27,7 +27,6 @@ const handleClick = e => {
   }
   header__form.style.display = "none";
   header__btn.style.display = "none";
-  mobileSearchBtn.style.display = "flex";
 };
 const mobileHandleClick = e => {
   e.preventDefault();
