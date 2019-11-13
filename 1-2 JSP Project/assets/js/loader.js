@@ -1,4 +1,4 @@
-const paintLoader = () => {
+(function() {
   const box = document.createElement("div");
   const item1 = document.createElement("div");
   const item2 = document.createElement("div");
@@ -23,9 +23,4 @@ const paintLoader = () => {
   box.appendChild(item6);
 
   document.getElementById("indicator").appendChild(box);
-};
-
-function init() {
-  paintLoader();
-}
-init();
+})();

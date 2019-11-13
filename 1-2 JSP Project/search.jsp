@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
-      (async function getSearch() {
+      (async function() {
         try {
           const term = location.search.replace("?term=", "");
           const searchTerm = decodeURIComponent(term);

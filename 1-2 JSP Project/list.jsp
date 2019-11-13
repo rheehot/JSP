@@ -31,23 +31,31 @@ pageEncoding="UTF-8"%>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
       const term = location.search.replace("?title=", "");
-      (async function getData() {
+      (async function() {
         try {
+          let results = [];
           if (term === "popular") {
-            const { results } = await getPopular();
+            const { results: one } = await getPopular();
+            const { results: two } = await getPopular(2);
+            results = [...one, ...two];
             listMovies(results, "인기있는");
           } else if (term === "nowPlaying") {
-            const { results } = await getNowPlaying();
+            const { results: one } = await getNowPlaying();
+            const { results: two } = await getNowPlaying(2);
+            results = [...one, ...two];
             listMovies(results, "현재 상영 중");
           } else if (term === "topRated") {
-            const { results } = await getTopRated();
+            const { results: one } = await getTopRated();
+            const { results: two } = await getTopRated(2);
+            results = [...one, ...two];
             listMovies(results, "높은평점");
           } else if (term === "upComing") {
-            const { results } = await getUpcoming();
+            const { results: one } = await getUpcoming();
+            const { results: two } = await getUpcoming(2);
+            results = [...one, ...two];
             listMovies(results, "개봉예정");
           } else if (term === "like") {
           }
-
           const clickable = document.querySelectorAll(".main__contents__item");
           clickable.forEach(item => {
             item.addEventListener("click", e =>

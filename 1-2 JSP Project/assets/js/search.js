@@ -53,9 +53,8 @@ const mobileHandleClick = e => {
     restore();
   }
 };
-function init() {
+(function() {
   searchBtn.addEventListener("click", handleClick);
   mobileSearchBtn.addEventListener("click", mobileHandleClick);
   mobileBackBtn.addEventListener("click", mobileHandleClick);
-}
-init();
+})();

@@ -30,18 +30,15 @@ pageEncoding="UTF-8"%>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
-      (async function getData() {
+      (async function() {
         try {
           const { results: nowPlaying } = await getNowPlaying();
           const { results: popular } = await getPopular();
           const { results: topRated } = await getTopRated();
           const { results: upcoming } = await getUpcoming();
           const { results: similar } = await getSimilar(475557);
-          paintPosters(
-            similar,
-            "내가 좋아하는 영화와 비슷한 영화 --- ( 입력 : 조커 )",
-            "like"
-          );
+          const movie = nowPlaying[0].title;
+          paintPosters(similar, movie + "와 비슷한 영화");
           paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
           paintPosters(upcoming, "개봉 예정", "upComing");
           paintPosters(popular, "인기있는", "popular");

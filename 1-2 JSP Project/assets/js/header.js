@@ -20,7 +20,7 @@ const headerUserChange = (email, admin) => {
   }
 };
 
-const header = () => {
+(function() {
   const header_1 = document.createElement("div");
   const header_2 = document.createElement("div");
   const header_3 = document.createElement("div");
@@ -77,9 +77,4 @@ const header = () => {
   header.appendChild(header_1);
   header.appendChild(header_2);
   header.appendChild(header_3);
-};
-
-function init() {
-  header();
-}
-init();
+})();

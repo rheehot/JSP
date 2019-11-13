@@ -72,7 +72,7 @@ const navHelp = () => {
   document.querySelector("nav").appendChild(nav_item);
 };
 
-function init() {
+(function() {
   navHome();
   navList("fas fa-fire", "인기", "nav_popular", "popular");
   navList("fas fa-clock", "상영중", "nav_nowPlaying", "nowPlaying");
@@ -101,5 +101,4 @@ function init() {
   if (location.href.includes("help") === true) {
     navActive("nav_help");
   }
-}
-init();
+})();
