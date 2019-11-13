@@ -23,10 +23,8 @@ pageEncoding="UTF-8"%>
     <main id="search">
       <div class="networkError">Network Error</div>
     </main>
-    <script src="./assets/js/header.js"></script>
-    <script src="./assets/js/nav.js"></script>
+    <script src="./assets/js/defaultView.js"></script>
     <script src="./assets/js/loader.js"></script>
-    <script src="assets/js/search.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
@@ -36,7 +34,6 @@ pageEncoding="UTF-8"%>
           const searchTerm = decodeURIComponent(term);
           const { results } = await getSearchMovies(term);
           searchMovies(results, searchTerm);
-
           const clickable = document.querySelectorAll(".main__contents__item");
           clickable.forEach(item => {
             item.addEventListener("click", e =>

@@ -49,10 +49,8 @@ pageEncoding="UTF-8"%>
       </div>
     </main>
 
-    <script src="./assets/js/header.js"></script>
-    <script src="./assets/js/nav.js"></script>
+    <script src="./assets/js/defaultView.js"></script>
     <script src="./assets/js/loader.js"></script>
-    <script src="assets/js/search.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");

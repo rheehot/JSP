@@ -1,4 +1,11 @@
 const key = "87bdf1c229a761bf9f16745293c2fc6c";
+(function() {
+  if (typeof key === "undefined") {
+    document.querySelector(".networkError").innerText =
+      "Add your API key to load movie data.";
+    document.querySelector(".networkError").style.color = "peru";
+  }
+})();
 const getDetail = id =>
   fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=ko-kor`
@@ -40,6 +47,7 @@ const getSimilar = (id, page = 1) =>
   )
     .then(res => res.json())
     .then(data => data);
+
 const paintPosters = (data, str, title) => {
   const mainColumn = document.createElement("div");
   const mainSectionText = document.createElement("span");
@@ -222,11 +230,3 @@ const hideSpinner = query => {
   spinnerBox.style.display = "none";
   main.style.opacity = "1";
 };
-
-(function() {
-  if (typeof key === "undefined") {
-    document.querySelector(".networkError").innerText =
-      "Add your API key to load movie data.";
-    document.querySelector(".networkError").style.color = "peru";
-  }
-})();
