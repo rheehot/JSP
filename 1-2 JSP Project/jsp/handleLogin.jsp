@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<jsp:useBean id="memMgr" class="polyMovie.MemberMgr" />
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,27 +8,20 @@ pageEncoding="UTF-8"%>
     <title>Insert title here</title>
   </head>
   <body>
+    <% request.setCharacterEncoding("UTF-8"); 
+    String email = request.getParameter("email"); String password =
+    request.getParameter("password"); 
+    boolean loginCheck = memMgr.loginCheck(email, password); %> 
     <% 
-    request.setCharacterEncoding("UTF-8"); 
-    String email = request.getParameter("email"); 
-    String pw = request.getParameter("password");
-    
-    if(email.equals("admin@email.com") && pw.equals("1234")){
-    	session.setAttribute("user.email", email);
-    	session.setAttribute("user.username", "Larry Jung");
-    	session.setAttribute("isAdmin", "true");
-    	session.removeAttribute("passwordError");
-    	response.sendRedirect("../index.jsp"); 
-    } else if(email.equals("user@email.com") && pw.equals("1234")){
-    	session.setAttribute("user.email", email);
-        session.setAttribute("user.username", "Larry Jung");
-        session.setAttribute("isAdmin", "false");
-        session.removeAttribute("passwordError");
-        response.sendRedirect("../index.jsp"); 
-    } else {
-    session.setAttribute("passwordError", "true");
-    response.sendRedirect("../login.jsp"); 
-    } 
-    %>
+    if(loginCheck){
+	    if(email.equals("admin@email.com") == true){ 
+	    	session.setAttribute("isAdmin", "true"); 
+		}
+	    session.setAttribute("user.email", email);
+	    response.sendRedirect("../index.jsp"); }
+    else{
+	    session.setAttribute("loginError", "true");
+	    response.sendRedirect("../login.jsp"); 
+	} %>
   </body>
 </html>

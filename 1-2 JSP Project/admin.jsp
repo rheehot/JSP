@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
   <body>
     <% String userEmail= (String) session.getAttribute("user.email"); String
     isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("passwordError"); %>
+    session.removeAttribute("loginError"); %>
     <header></header>
     <nav></nav>
     <main id="admin">

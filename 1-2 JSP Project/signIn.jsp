@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
   <body>
     <% String userEmail= (String) session.getAttribute("user.email"); String
     isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("passwordError"); %>
+    session.removeAttribute("loginError"); %>
     <header></header>
     <nav></nav>
 
@@ -30,31 +30,30 @@ pageEncoding="UTF-8"%>
           </a>
           <span class="signIn__title__second">Create your account</span>
         </div>
-        <form action="#" method="post" class="signIn__column">
+        <form
+          action="./jsp/handleRegister.jsp"
+          method="post"
+          class="signIn__column"
+        >
           <div class="signIn__inputBox">
             <label for="username"
               >Username <span class="required">*</span></label
             >
-            <input type="text" name="username" class="signIn__input" required />
+            <input type="text" name="userName" class="signIn__input" required />
           </div>
           <div class="signIn__inputBox">
             <label for="email"
               >Email address <span class="required">*</span></label
             >
-            <input
-              type="email"
-              name="password"
-              class="signIn__input"
-              required
-            />
+            <input type="email" name="email" class="signIn__input" required />
           </div>
           <div class="signIn__inputBox">
-            <label for="password"
+            <label for="passcode"
               >Password <span class="required">*</span></label
             >
             <input
               type="password"
-              name="password"
+              name="passcode"
               class="signIn__input"
               required
             />

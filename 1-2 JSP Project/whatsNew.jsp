@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
   <body>
     <% String userEmail= (String) session.getAttribute("user.email"); String
     isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("passwordError"); %>
+    session.removeAttribute("loginError"); %>
     <header></header>
     <nav></nav>
     <main id="whatsNew" style="color: #eee; padding-top: 30px;">
@@ -36,13 +36,17 @@ pageEncoding="UTF-8"%>
           않습니다.
         </p>
         <p>
-          <b>사용 기술 : </b>HTML5, CSS3, ES6(= Modern Javascript )
-          <b>[ *CSS 프레임워크, jQuery 미사용 ]</b>
+          <b>사용 기술 : </b>HTML5, CSS3, ES6
+          <b>[ *CSS 프레임워크, jQuery, 템플릿 미사용 ]</b>
+        </p>
+        <p>
+          <b>ES6이란? : </b> 최신 문법의 JavaScript, 같은 의미의 명칭으로는
+          'Vanilla JS', 'Modern JS', 'Pure JS'가 있다.
         </p>
         <p>
           <b>반응형 웹 : </b>모바일 UI 적용 → 브라우저 가로 크기를 줄여보세요
         </p>
-        <p><b>로그인 : </b> DB 연결 X</p>
+        <p><b>로그인 : </b>DB연결 완료</p>
         <p>
           <b>권한 부여 : </b> admin으로 로그인 시, profile 대신 admin 바로가기
           제공
@@ -61,14 +65,13 @@ pageEncoding="UTF-8"%>
           style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
         >
           <div class="authBox__column" style="margin-bottom: 15px;">
-            <b style="font-size: 20px;">로그인 (Test)</b>
+            <b style="font-size: 20px;">로그인 (admin)</b>
           </div>
           <div
             class="authBox__column"
             style="display: flex; flex-direction: column;"
           >
             <span style="margin-bottom: 10px;">admin@email.com / 1234</span>
-            <span>user@email.com / 1234</span>
           </div>
         </div>
       </div>

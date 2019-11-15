@@ -14,9 +14,9 @@ pageEncoding="UTF-8"%>
     <title>Document</title>
   </head>
   <body>
-    <% String isError = (String) session.getAttribute("passwordError"); String
+    <% String isError = (String) session.getAttribute("loginError"); String
     userEmail= (String) session.getAttribute("user.email"); String isAdmin =
-    (String) session.getAttribute("isAdmin"); %>
+    (String) session.getAttribute("isAdmin");%>
     <header></header>
     <nav></nav>
     <main id="login">

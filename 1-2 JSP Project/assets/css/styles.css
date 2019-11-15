@@ -78,7 +78,7 @@ a {
     width: 200px;
   }
   .loaderContainer {
-    padding: 50px 0 0 0;
+    margin: 50px 0 0 0;
   }
 }
 @media screen and (max-width: 500px) {
