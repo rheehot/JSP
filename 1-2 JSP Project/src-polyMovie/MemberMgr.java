@@ -1,10 +1,13 @@
 package polyMovie;
 
 import java.sql.*;
+
 import java.util.Vector;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import smartProject.RegisterBean;
-
+import polyMovie.UsersBean;
 
 public class MemberMgr {
 
@@ -60,6 +63,34 @@ public class MemberMgr {
             pool.freeConnection(con, pstmt, rs);
         }
         return loginCon;
+    }
+    
+    public JSONArray getMemberList() {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        JSONArray   jary    = new JSONArray();
+        try {
+            con = pool.getConnection();
+            String strQuery = "select * from users";
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(strQuery);
+
+            while (rs.next()) {
+                JSONObject jo = new JSONObject();
+                ResultSetMetaData rmd = rs.getMetaData();
+                for ( int i=1; i<=rmd.getColumnCount(); i++ )
+                {
+                    jo.put(rmd.getColumnName(i),rs.getString(rmd.getColumnName(i)));
+                }
+                jary.put(jo);
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception" + ex);
+        } finally {
+            pool.freeConnection(con, stmt, rs);
+        }
+        return jary;
     }
     
     public boolean checkEmail(String email) {

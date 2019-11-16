@@ -36,29 +36,35 @@ pageEncoding="UTF-8"%>
           않습니다.
         </p>
         <p>
-          <b>사용 기술 : </b>HTML5, CSS3, ES6
-          <b>[ *CSS 프레임워크, jQuery, 템플릿 미사용 ]</b>
-        </p>
-        <p>
-          <b>ES6이란? : </b> 최신 문법의 JavaScript, 같은 의미의 명칭으로는
-          'Vanilla JS', 'Modern JS', 'Pure JS'가 있다.
+          <b>사용 기술 : </b>HTML5, CSS3, ES6 (Modern JavaScript)
+          <b
+            >[ *CSS 프레임워크, jQuery, 템플릿
+            <b style="color: orangered">미사용</b> ]</b
+          >
         </p>
         <p>
           <b>반응형 웹 : </b>모바일 UI 적용 → 브라우저 가로 크기를 줄여보세요
         </p>
-        <p><b>로그인 : </b>DB연결 완료</p>
+        <p><b>로그인 : </b>DB 연결</p>
         <p>
           <b>권한 부여 : </b> admin으로 로그인 시, profile 대신 admin 바로가기
           제공
         </p>
         <p><b>검색 : </b>영어, 한글검색 지원</p>
         <p>
-          <b>Navigation bar : </b> Home에서 더보기로 접근하는 대신, 바로
-          접근하세요.
+          <b>사용자 경험 : </b>좋아요한 영화와 비슷한 영화들을 home에서
+          보여줍니다.
         </p>
         <p>
-          <b>Indicator : </b>Data를 fetching하는 동안 로딩화면을 보여줍니다.
-          로딩이 끝나면 Fade In 효과
+          <b>바로가기 : </b> Home에서 더보기로 접근하는 대신, 바로 접근하세요.
+        </p>
+        <p>
+          <b>로딩 : </b>Data를 fetching하는 동안 로딩화면을 보여줍니다. 로딩이
+          끝나면 Fade In.
+        </p>
+        <p>
+          <b>컴포넌트 : </b>중복을 컴포넌트화 하여 모든 페이지의 HTML 코드는
+          최소 6, 최대 50줄을 넘지 않습니다.
         </p>
         <div
           class="authBox"

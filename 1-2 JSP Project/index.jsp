@@ -29,33 +29,67 @@ pageEncoding="UTF-8"%>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
       (async function() {
-        try {
-          const { results: nowPlaying } = await getNowPlaying();
-          const { results: popular } = await getPopular();
-          const { results: topRated } = await getTopRated();
-          const { results: upcoming } = await getUpcoming();
-          const { results: similar } = await getSimilar(475557);
-          const movie = nowPlaying[0].title;
-          paintPosters(similar, movie + "와 비슷한 영화");
-          paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
-          paintPosters(upcoming, "개봉 예정", "upComing");
-          paintPosters(popular, "인기있는", "popular");
-          paintPosters(topRated, "높은 평점", "topRated");
-          const clickable = document.querySelectorAll(".main__contents__item");
-          const moreBtn = document.querySelectorAll(".more__box__text");
-          clickable.forEach(item => {
-            item.addEventListener("click", e =>
-              e.currentTarget.lastChild.submit()
+        if ("<%=userEmail%>" !== "null") {
+          try {
+            const { results: nowPlaying } = await getNowPlaying();
+            const { results: popular } = await getPopular();
+            const { results: topRated } = await getTopRated();
+            const { results: upcoming } = await getUpcoming();
+            const { results: similar } = await getSimilar(
+              nowPlaying[Math.floor(Math.random() * 20)].id
             );
-          });
-          moreBtn.forEach(item =>
-            item.addEventListener("click", e => e.target.nextSibling.submit())
-          );
-        } catch (e) {
-          console.log(e);
-          document.querySelector(".networkError").style.display = "flex";
-        } finally {
-          hideSpinner(".loaderContainer");
+            const movie = nowPlaying[Math.floor(Math.random() * 20)].title;
+            paintPosters(similar, movie + "와(과) 비슷한 영화");
+            paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
+            paintPosters(upcoming, "개봉 예정", "upComing");
+            paintPosters(popular, "인기있는", "popular");
+            paintPosters(topRated, "높은 평점", "topRated");
+            const clickable = document.querySelectorAll(
+              ".main__contents__item"
+            );
+            const moreBtn = document.querySelectorAll(".more__box__text");
+            clickable.forEach(item => {
+              item.addEventListener("click", e =>
+                e.currentTarget.lastChild.submit()
+              );
+            });
+            moreBtn.forEach(item =>
+              item.addEventListener("click", e => e.target.nextSibling.submit())
+            );
+          } catch (e) {
+            console.log(e);
+            document.querySelector(".networkError").style.display = "flex";
+          } finally {
+            hideSpinner(".loaderContainer");
+          }
+        } else {
+          try {
+            const { results: nowPlaying } = await getNowPlaying();
+            const { results: popular } = await getPopular();
+            const { results: topRated } = await getTopRated();
+            const { results: upcoming } = await getUpcoming();
+            paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
+            paintPosters(upcoming, "개봉 예정", "upComing");
+            paintPosters(popular, "인기있는", "popular");
+            paintPosters(topRated, "높은 평점", "topRated");
+            const clickable = document.querySelectorAll(
+              ".main__contents__item"
+            );
+            const moreBtn = document.querySelectorAll(".more__box__text");
+            clickable.forEach(item => {
+              item.addEventListener("click", e =>
+                e.currentTarget.lastChild.submit()
+              );
+            });
+            moreBtn.forEach(item =>
+              item.addEventListener("click", e => e.target.nextSibling.submit())
+            );
+          } catch (e) {
+            console.log(e);
+            document.querySelector(".networkError").style.display = "flex";
+          } finally {
+            hideSpinner(".loaderContainer");
+          }
         }
       })();
     </script>
