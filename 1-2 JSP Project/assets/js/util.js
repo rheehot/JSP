@@ -48,7 +48,7 @@ const getSimilar = (id, page = 1) =>
     .then(res => res.json())
     .then(data => data);
 
-const paintPosters = (data, str, title) => {
+const paintPosters = (data, str, title, isSimillar = false) => {
   if (data.length !== 0) {
     const mainColumn = document.createElement("div");
     const mainSectionText = document.createElement("span");
@@ -111,7 +111,9 @@ const paintPosters = (data, str, title) => {
     moreBox.appendChild(form);
     mainColumn.appendChild(mainSectionText);
     mainColumn.appendChild(mainContents);
-    mainColumn.appendChild(moreBox);
+    if (isSimillar !== true) {
+      mainColumn.appendChild(moreBox);
+    }
     mainColumn.appendChild(hr);
     main.appendChild(mainColumn);
   }

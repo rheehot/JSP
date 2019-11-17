@@ -32,14 +32,17 @@ pageEncoding="UTF-8"%>
         if ("<%=userEmail%>" !== "null") {
           try {
             const { results: nowPlaying } = await getNowPlaying();
+            const randomMovie = nowPlaying[Math.floor(Math.random() * 20)];
             const { results: popular } = await getPopular();
             const { results: topRated } = await getTopRated();
             const { results: upcoming } = await getUpcoming();
-            const { results: similar } = await getSimilar(
-              nowPlaying[Math.floor(Math.random() * 20)].id
+            const { results: similar } = await getSimilar(randomMovie.id);
+            paintPosters(
+              similar,
+              randomMovie.title + "와(과) 비슷한 영화",
+              "",
+              true
             );
-            const movie = nowPlaying[Math.floor(Math.random() * 20)].title;
-            paintPosters(similar, movie + "와(과) 비슷한 영화");
             paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
             paintPosters(upcoming, "개봉 예정", "upComing");
             paintPosters(popular, "인기있는", "popular");

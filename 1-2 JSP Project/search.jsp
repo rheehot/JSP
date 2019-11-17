@@ -32,7 +32,9 @@ pageEncoding="UTF-8"%>
         try {
           const term = location.search.replace("?term=", "");
           const searchTerm = decodeURIComponent(term);
-          const { results } = await getSearchMovies(term);
+          const { results: one } = await getSearchMovies(term);
+          const { results: two } = await getSearchMovies(term, 2);
+          const results = [...one, ...two];
           searchMovies(results, searchTerm);
           const clickable = document.querySelectorAll(".main__contents__item");
           clickable.forEach(item => {

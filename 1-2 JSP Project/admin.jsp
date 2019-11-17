@@ -49,9 +49,14 @@ pageEncoding="UTF-8"%>
       const btnClick = e => {
         if(e.currentTarget.firstElementChild.innerText === "회원 조회"){
           reset();
+          document.querySelectorAll(".admin__column__leftItem").forEach(item => item.style.backgroundColor = "#282828");
+          e.currentTarget.style.backgroundColor = "rgba(187, 187, 187, 0.2)";
+
           users(json);
         } else if(e.currentTarget.firstElementChild.innerText === "회원탈퇴"){
           reset();
+          document.querySelectorAll(".admin__column__leftItem").forEach(item => item.style.backgroundColor = "#282828");
+          e.currentTarget.style.backgroundColor = "rgba(187, 187, 187, 0.2)";
           const contents = document.createElement("span");
           contents.innerText = "회원탈퇴 요청 목록";
           document.getElementById("rightComponent").appendChild(contents);

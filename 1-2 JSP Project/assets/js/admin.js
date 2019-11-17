@@ -13,6 +13,7 @@ const users = data => {
   thead_tr.appendChild(th1);
   thead_tr.appendChild(th2);
   thead_tr.appendChild(th3);
+  thead.appendChild(thead_tr);
 
   Array.from(data).forEach(item => {
     const td1 = document.createElement("td");
@@ -27,7 +28,7 @@ const users = data => {
     tr.appendChild(td3);
     tbody.appendChild(tr);
   });
-  table.appendChild(thead_tr);
+  table.appendChild(thead);
   table.appendChild(tbody);
   document.getElementById("rightComponent").appendChild(table);
 };
