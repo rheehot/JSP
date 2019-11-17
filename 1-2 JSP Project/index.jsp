@@ -31,14 +31,19 @@ pageEncoding="UTF-8"%>
       (async function() {
         if ("<%=userEmail%>" !== "null") {
           try {
+            let similar = null;
+            let randomMovie = null;
             const { results: nowPlaying } = await getNowPlaying();
-            const randomMovie = nowPlaying[Math.floor(Math.random() * 20)];
             const { results: popular } = await getPopular();
             const { results: topRated } = await getTopRated();
             const { results: upcoming } = await getUpcoming();
-            const { results: similar } = await getSimilar(randomMovie.id);
+            while (true) {
+              randomMovie = nowPlaying[Math.floor(Math.random() * 20)];
+              similar = await getSimilar(randomMovie.id);
+              if (similar.results.length !== 0) break;
+            }
             paintPosters(
-              similar,
+              similar.results,
               randomMovie.title + "와(과) 비슷한 영화",
               "",
               true
