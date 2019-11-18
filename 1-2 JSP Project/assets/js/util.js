@@ -266,9 +266,9 @@ const paintDetail = data => {
       img.className = "recommendations__img";
       title.className = "recommendations__title";
 
-      img.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
+      img.src = `https://image.tmdb.org/t/p/w300${item.poster_path}`;
       title.innerText = item.title;
-      form.action = "#";
+      form.action = "./detail.jsp";
       input.type = "hidden";
       input.name = "id";
       input.value = item.id;

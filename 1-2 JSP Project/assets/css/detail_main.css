@@ -57,9 +57,6 @@
 #detail .info__item:not(:last-child) {
   margin-right: 15px;
 }
-#detail .info__genre:first-child {
-  margin-left: 10px;
-}
 
 #detail .data__overview {
   width: 70%;
@@ -72,6 +69,9 @@
 #detail .data__recommendations {
   display: flex;
   flex-direction: column;
+}
+#detail .recommendations__title {
+  font-size: 20px;
 }
 
 #detail .recommendations__item {

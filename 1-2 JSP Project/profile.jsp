@@ -29,25 +29,6 @@ pageEncoding="UTF-8"%>
         <div class="sk-chase-dot"></div>
       </div>
       <span style="margin-left: 20px;">Building</span>
-      <div class="content">
-        <div class="detail__content__cover" id="poster"></div>
-        <div class="detail__content__data">
-          <div class="detail__content__data__titleBox">
-            <div class="detail__content__data__title" id="title">
-              data.title
-            </div>
-            <div class="detail__content__data__likeBox">
-              <div class="detail__content__data__like">likeBtn |</div>
-              <div class="detail__content__data__disLike">|dislikeBtn</div>
-            </div>
-          </div>
-
-          <div class="detail__content__data__description" id="description">
-            data.description
-          </div>
-          <div class="detail__content__data__comments">comments</div>
-        </div>
-      </div>
     </main>
     <script src="./assets/js/defaultView.js"></script>
     <script src="./assets/js/util.js"></script>
