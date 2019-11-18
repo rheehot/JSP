@@ -203,11 +203,13 @@ const paintDetail = data => {
   const dataInfoItem1 = document.createElement("span");
   const dataInfoItem2 = document.createElement("span");
   const dataInfoItem3 = document.createElement("div");
-  const dataInfoItem4 = document.createElement("span");
+  const dataInfoItem4 = document.createElement("a");
   const dataOverview = document.createElement("div");
   const dataOverviewSpan = document.createElement("span");
   const dataRecommend = document.createElement("div");
+  const dataRecommendTextBox = document.createElement("div");
   const dataRecommendTitle = document.createElement("span");
+  const dataRecommendShow = document.createElement("span");
   const container = document.createElement("div");
 
   content.className = "content";
@@ -223,8 +225,12 @@ const paintDetail = data => {
   dataInfoItem4.className = "info__item";
   dataOverview.className = "data__overview";
   dataRecommend.className = "data__recommendations";
+  dataRecommendTextBox.className = "recommendations__box";
   dataRecommendTitle.className = "recommendations__title";
   dataRecommendTitle.innerText = "추천";
+  dataRecommendShow.className = "recommendations__show";
+  dataRecommendShow.id = "showHide";
+  dataRecommendShow.innerText = "숨기기";
 
   dataHeaderTitle.innerText = data.title;
   dataInfoItem1.innerText = data.release_date;
@@ -240,6 +246,8 @@ const paintDetail = data => {
     dataInfoItem3.appendChild(dataInfoItemGenre);
   });
   dataInfoItem4.innerText = "🎬 IMDB";
+  dataInfoItem4.href = `https://www.imdb.com/title/${data.imdb_id}`;
+  dataInfoItem4.target = "_blank";
   dataOverviewSpan.innerText = data.overview;
 
   dataHeaderIconBox.appendChild(dataHeaderIcon);
@@ -258,16 +266,20 @@ const paintDetail = data => {
       const Item = document.createElement("div");
       const img = document.createElement("img");
       const title = document.createElement("span");
+      const star = document.createElement("span");
       const form = document.createElement("form");
       const input = document.createElement("input");
 
       container.className = "recommendations__container";
+      container.id = "recommendContents";
       Item.className = "recommendations__item";
+      star.className = "recommendations__star";
       img.className = "recommendations__img";
       title.className = "recommendations__title";
 
       img.src = `https://image.tmdb.org/t/p/w300${item.poster_path}`;
       title.innerText = item.title;
+      star.innerText = `🍅 ${item.vote_average} / 10`;
       form.action = "./detail.jsp";
       input.type = "hidden";
       input.name = "id";
@@ -276,10 +288,13 @@ const paintDetail = data => {
       form.appendChild(input);
       Item.appendChild(img);
       Item.appendChild(title);
+      Item.appendChild(star);
       Item.appendChild(form);
       container.appendChild(Item);
     });
-    dataRecommend.appendChild(dataRecommendTitle);
+    dataRecommendTextBox.appendChild(dataRecommendTitle);
+    dataRecommendTextBox.appendChild(dataRecommendShow);
+    dataRecommend.appendChild(dataRecommendTextBox);
     dataRecommend.appendChild(container);
   }
 

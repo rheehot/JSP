@@ -39,6 +39,19 @@ pageEncoding="UTF-8"%>
               e.currentTarget.lastChild.submit()
             );
           });
+          if (document.getElementById("showHide")) {
+            const showHide = document.getElementById("showHide");
+            showHide.addEventListener("click", () => {
+              const main = document.getElementById("recommendContents");
+              if (showHide.innerText === "숨기기") {
+                showHide.innerText = "표시";
+                main.style.display = "none";
+              } else {
+                showHide.innerText = "숨기기";
+                main.style.display = "flex";
+              }
+            });
+          }
         } catch (e) {
           console.log(e);
           document.querySelector(".networkError").style.display = "flex";

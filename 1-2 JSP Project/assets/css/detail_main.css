@@ -70,8 +70,18 @@
   display: flex;
   flex-direction: column;
 }
+#detail .recommendations__box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
 #detail .recommendations__title {
   font-size: 20px;
+  margin-right: 20px;
+}
+#detail .recommendations__show {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 #detail .recommendations__item {
@@ -90,23 +100,36 @@
 }
 #detail .recommendations__item span {
   position: absolute;
-  top: 120px;
+  width: 100%;
+  text-align: center;
   opacity: 0;
+  font-size: 16px;
+}
+#detail .recommendations__item .recommendations__title {
+  top: 110px;
+  transition: opacity 0.3s ease-in-out;
+}
+#detail .recommendations__item .recommendations__star {
+  bottom: 20px;
+  padding-right: 10px;
   transition: opacity 0.3s ease-in-out;
 }
 #detail .recommendations__item:hover .recommendations__img {
-  opacity: 0.3;
+  opacity: 0.2;
 }
-#detail .recommendations__item:hover .recommendations__title {
+#detail .recommendations__item:hover .recommendations__title,
+#detail .recommendations__item:hover .recommendations__star {
   opacity: 1;
 }
 #detail .recommendations__container {
   display: flex;
   flex-wrap: wrap;
 }
+#detail .recommendations__item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 #detail .recommendations__item:not(:last-child) {
   margin-right: 15px;
-}
-#detail .recommendations__item {
-  margin-top: 20px;
 }
