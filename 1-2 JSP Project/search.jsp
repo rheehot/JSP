@@ -24,6 +24,7 @@ pageEncoding="UTF-8"%>
       <div class="networkError">Network Error</div>
     </main>
     <script src="./assets/js/defaultView.js"></script>
+    <script src="./assets/js/api.js"></script>
     <script src="./assets/js/loader.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>

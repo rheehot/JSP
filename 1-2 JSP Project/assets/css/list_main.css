@@ -34,7 +34,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 20px 20px 0;
+  margin-right: 20px;
+  margin-top: 20px;
   cursor: pointer;
 }
 #list .main__contents__item img {

@@ -6,7 +6,7 @@
 @import url("./loader.css");
 @import url("./home_main.css");
 @import url("./search_main.css");
-@import url("./detail.css");
+@import url("./detail_main.css");
 @import url("./login_main.css");
 @import url("./signin_main.css");
 @import url("./list_main.css");
@@ -15,10 +15,6 @@
 
 * {
   box-sizing: border-box;
-}
-
-.loggedUser {
-  display: none;
 }
 .networkError {
   display: none;
@@ -78,6 +74,17 @@ a {
     width: 200px;
   }
   .loaderContainer {
+    margin: 50px 0 0 0;
+  }
+  #detail {
+    padding: 20px 0;
+  }
+  #detail .data__overview {
+    width: 100%;
+  }
+  .detail__backdrop {
+    width: 100%;
+    height: calc(100vh - 50px);
     margin: 50px 0 0 0;
   }
 }

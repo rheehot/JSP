@@ -21,63 +21,30 @@ pageEncoding="UTF-8"%>
     <nav></nav>
     <div class="loaderContainer" id="indicator"></div>
     <main id="detail">
-      <div class="content">
-        <div class="release">
-          <span id="detail__release"></span>
-        </div>
-        <div class="runtime">
-          <span id="detail__runtime"></span>
-        </div>
-        <div class="title">
-          <span id="detail__title"></span>
-        </div>
-        <div class="posterPath">
-          <span id="detail__posterPath"></span>
-        </div>
-        <div class="overview">
-          <span id="detail__overview"></span>
-        </div>
-        <div class="genres">
-          <span>genres : </span>
-        </div>
-        <div class="imdb">
-          <span id="detail__imdb"></span>
-        </div>
-        <span style="font-size: 30px; color: peru; margin: 10px auto;">
-          만드는 중
-        </span>
-      </div>
+      <div class="networkError">Network Error</div>
     </main>
-
     <script src="./assets/js/defaultView.js"></script>
     <script src="./assets/js/loader.js"></script>
+    <script src="./assets/js/api.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
-      (async function getData() {
-        document.querySelector(".content").style.display = "none";
-        const data = await getDetail(location.search.replace("?id=", ""));
-        console.log(data);
-        document.getElementById("detail__release").innerText =
-          "release date : " + data.release_date;
-        document.getElementById("detail__runtime").innerText =
-          "runtime : " + data.runtime + " mins";
-        document.getElementById("detail__title").innerText =
-          "title : " + data.title;
-        document.getElementById("detail__posterPath").innerText =
-          "poster_path : " + data.poster_path;
-        document.getElementById("detail__overview").innerText =
-          "overview : " + data.overview;
-        const genres = document.querySelector(".genres");
-        data.genres.forEach(item => {
-          const span = document.createElement("span");
-          span.innerText = item.name + " ";
-          genres.appendChild(span);
-        });
-        document.getElementById("detail__imdb").innerText =
-          "imdb_id : " + data.imdb_id;
-        document.querySelector(".sk-chase").style.display = "none";
-        document.querySelector(".content").style.display = "flex";
+      (async function() {
+        try {
+          const data = await getDetail(location.search.replace("?id=", ""));
+          paintDetail(data);
+          const clickable = document.querySelectorAll(".recommendations__item");
+          clickable.forEach(item => {
+            item.addEventListener("click", e =>
+              e.currentTarget.lastChild.submit()
+            );
+          });
+        } catch (e) {
+          console.log(e);
+          document.querySelector(".networkError").style.display = "flex";
+        } finally {
+          hideSpinner(".loaderContainer");
+        }
       })();
     </script>
   </body>

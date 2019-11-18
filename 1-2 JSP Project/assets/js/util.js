@@ -1,52 +1,9 @@
-const key = "87bdf1c229a761bf9f16745293c2fc6c";
-(function() {
-  if (typeof key === "undefined") {
-    document.querySelector(".networkError").innerText =
-      "Add your API key to load movie data.";
-    document.querySelector(".networkError").style.color = "peru";
-  }
-})();
-const getDetail = id =>
-  fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=ko-kor`
-  )
-    .then(res => res.json())
-    .then(data => data);
-const getSearchMovies = (term, page = 1) =>
-  fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=ko-kor&query=${term}&page=${page}&include_adult=false&region=kr`
-  )
-    .then(res => res.json())
-    .then(data => data);
-const getNowPlaying = (page = 1) =>
-  fetch(
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=ko-kor&page=${page}&region=KR`
-  )
-    .then(res => res.json())
-    .then(data => data);
-const getPopular = (page = 1) =>
-  fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=ko-kor&page=${page}&region=KR`
-  )
-    .then(res => res.json())
-    .then(data => data);
-const getTopRated = (page = 1) =>
-  fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=ko-kor&page=${page}&region=KR`
-  )
-    .then(res => res.json())
-    .then(data => data);
-const getUpcoming = (page = 1) =>
-  fetch(`
-https://api.themoviedb.org/3/movie/upcoming?api_key=${key}&language=ko-kor&page=${page}&region=KR`)
-    .then(res => res.json())
-    .then(data => data);
-const getSimilar = (id, page = 1) =>
-  fetch(
-    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${key}&language=ko-kor&page=${page}`
-  )
-    .then(res => res.json())
-    .then(data => data);
+const hideSpinner = query => {
+  const spinnerBox = document.querySelector(`${query}`);
+  const main = document.querySelector("main");
+  spinnerBox.style.display = "none";
+  main.style.opacity = "1";
+};
 
 const paintPosters = (data, str, title, isSimillar = false) => {
   if (data.length !== 0) {
@@ -228,9 +185,111 @@ const listMovies = (data, str) => {
   mainColumn.appendChild(mainContents);
   main.appendChild(mainColumn);
 };
-const hideSpinner = query => {
-  const spinnerBox = document.querySelector(`${query}`);
-  const main = document.querySelector("main");
-  spinnerBox.style.display = "none";
-  main.style.opacity = "1";
+
+const paintDetail = data => {
+  const backdrop = document.createElement("div");
+  if (data.backdrop_path !== null) {
+    backdrop.className = "detail__backdrop";
+    backdrop.style.backgroundImage = `url("https://image.tmdb.org/t/p/original${data.backdrop_path}")`;
+  }
+
+  const content = document.createElement("div");
+  const contentData = document.createElement("div");
+  const dataHeader = document.createElement("div");
+  const dataHeaderTitle = document.createElement("span");
+  const dataHeaderIconBox = document.createElement("span");
+  const dataHeaderIcon = document.createElement("i");
+  const dataInfo = document.createElement("div");
+  const dataInfoItem1 = document.createElement("span");
+  const dataInfoItem2 = document.createElement("span");
+  const dataInfoItem3 = document.createElement("div");
+  const dataInfoItem4 = document.createElement("span");
+  const dataOverview = document.createElement("div");
+  const dataOverviewSpan = document.createElement("span");
+  const dataRecommend = document.createElement("div");
+  const dataRecommendTitle = document.createElement("span");
+  const container = document.createElement("div");
+
+  content.className = "content";
+  contentData.className = "content__data";
+  dataHeader.className = "data__header";
+  dataHeaderTitle.className = "data__header__title";
+  dataHeaderIconBox.className = "data__header__icon";
+  dataHeaderIcon.className = "far fa-thumbs-up";
+  dataInfo.className = "data__info";
+  dataInfoItem1.className = "info__item";
+  dataInfoItem2.className = "info__item";
+  dataInfoItem3.className = "info__item";
+  dataInfoItem4.className = "info__item";
+  dataOverview.className = "data__overview";
+  dataRecommend.className = "data__recommendations";
+  dataRecommendTitle.className = "recommendations__title";
+  dataRecommendTitle.innerText = "추천";
+
+  dataHeaderTitle.innerText = data.title;
+  dataInfoItem1.innerText = data.release_date;
+  dataInfoItem2.innerText = `${data.runtime} minutes`;
+  data.genres.forEach((item, index) => {
+    const dataInfoItemGenre = document.createElement("span");
+    dataInfoItemGenre.className = "info__genre";
+    if (index < data.genres.length - 1) {
+      dataInfoItemGenre.innerText = `${item.name} / `;
+    } else {
+      dataInfoItemGenre.innerText = item.name;
+    }
+    dataInfoItem3.appendChild(dataInfoItemGenre);
+  });
+  dataInfoItem4.innerText = "🎬 IMDB";
+  dataOverviewSpan.innerText = data.overview;
+
+  dataHeaderIconBox.appendChild(dataHeaderIcon);
+  dataHeader.appendChild(dataHeaderTitle);
+  dataHeader.appendChild(dataHeaderIconBox);
+
+  dataInfo.appendChild(dataInfoItem1);
+  dataInfo.appendChild(dataInfoItem2);
+  dataInfo.appendChild(dataInfoItem3);
+  dataInfo.appendChild(dataInfoItem4);
+
+  dataOverview.appendChild(dataOverviewSpan);
+
+  if (data.recommendations.results.length !== 0) {
+    data.recommendations.results.forEach(item => {
+      const Item = document.createElement("div");
+      const img = document.createElement("img");
+      const title = document.createElement("span");
+      const form = document.createElement("form");
+      const input = document.createElement("input");
+
+      container.className = "recommendations__container";
+      Item.className = "recommendations__item";
+      img.className = "recommendations__img";
+      title.className = "recommendations__title";
+
+      img.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
+      title.innerText = item.title;
+      form.action = "#";
+      input.type = "hidden";
+      input.name = "id";
+      input.value = item.id;
+
+      form.appendChild(input);
+      Item.appendChild(img);
+      Item.appendChild(title);
+      Item.appendChild(form);
+      container.appendChild(Item);
+    });
+    dataRecommend.appendChild(dataRecommendTitle);
+    dataRecommend.appendChild(container);
+  }
+
+  contentData.appendChild(dataHeader);
+  contentData.appendChild(dataInfo);
+  contentData.appendChild(dataOverview);
+  contentData.appendChild(dataRecommend);
+
+  content.appendChild(backdrop);
+  content.appendChild(contentData);
+
+  document.getElementById("detail").appendChild(content);
 };
