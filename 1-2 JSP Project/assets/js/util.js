@@ -186,7 +186,7 @@ const listMovies = (data, str) => {
   main.appendChild(mainColumn);
 };
 
-const paintDetail = data => {
+const paintDetail = (data, id, email, isLiked) => {
   const backdrop = document.createElement("div");
   if (data.backdrop_path !== null) {
     backdrop.className = "detail__backdrop";
@@ -198,6 +198,10 @@ const paintDetail = data => {
   const dataHeader = document.createElement("div");
   const dataHeaderTitle = document.createElement("span");
   const dataHeaderIconBox = document.createElement("span");
+  const dataHeaderForm = document.createElement("form");
+  const dataHeaderInput = document.createElement("input");
+  const dataHeaderInput1 = document.createElement("input");
+  const dataHeaderInput2 = document.createElement("input");
   const dataHeaderIcon = document.createElement("i");
   const dataInfo = document.createElement("div");
   const dataInfoItem1 = document.createElement("span");
@@ -217,7 +221,16 @@ const paintDetail = data => {
   dataHeader.className = "data__header";
   dataHeaderTitle.className = "data__header__title";
   dataHeaderIconBox.className = "data__header__icon";
-  dataHeaderIcon.className = "far fa-thumbs-up";
+  dataHeaderIconBox.id = "js-like";
+  if (isLiked === true) {
+    dataHeaderIcon.className = "fas fa-thumbs-up";
+    dataHeaderForm.action = "./jsp/handleDeleteLike.jsp";
+  } else {
+    dataHeaderIcon.className = "far fa-thumbs-up";
+    dataHeaderForm.action = "./jsp/handleLike.jsp";
+  }
+
+  dataHeaderForm.id = "js-likeForm";
   dataInfo.className = "data__info";
   dataInfoItem1.className = "info__item";
   dataInfoItem2.className = "info__item";
@@ -231,6 +244,16 @@ const paintDetail = data => {
   dataRecommendShow.className = "recommendations__show";
   dataRecommendShow.id = "showHide";
   dataRecommendShow.innerText = "숨기기";
+  // like input
+  dataHeaderInput.type = "hidden";
+  dataHeaderInput.name = "id";
+  dataHeaderInput.value = id;
+  dataHeaderInput1.type = "hidden";
+  dataHeaderInput1.name = "email";
+  dataHeaderInput1.value = email;
+
+  dataHeaderForm.appendChild(dataHeaderInput);
+  dataHeaderForm.appendChild(dataHeaderInput1);
 
   dataHeaderTitle.innerText = data.title;
   dataInfoItem1.innerText = data.release_date;
@@ -253,6 +276,7 @@ const paintDetail = data => {
   dataHeaderIconBox.appendChild(dataHeaderIcon);
   dataHeader.appendChild(dataHeaderTitle);
   dataHeader.appendChild(dataHeaderIconBox);
+  dataHeader.appendChild(dataHeaderForm);
 
   dataInfo.appendChild(dataInfoItem1);
   dataInfo.appendChild(dataInfoItem2);

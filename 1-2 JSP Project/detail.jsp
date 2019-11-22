@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<jsp:useBean id="movieMgr" class="polyMovie.MovieMgr" />
 <!DOCTYPE html>
 <html lang="kr">
   <head>
@@ -15,8 +16,9 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <% String userEmail= (String) session.getAttribute("user.email"); String
-    isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("loginError");%>
+    isAdmin = (String) session.getAttribute("isAdmin"); String id =
+    request.getParameter("id"); session.removeAttribute("loginError"); boolean
+    flag = movieMgr.checkLike(id, userEmail);%>
     <header></header>
     <nav></nav>
     <div class="loaderContainer" id="indicator"></div>
@@ -29,16 +31,22 @@ pageEncoding="UTF-8"%>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
+      const id = location.search.replace("?id=", "");
       (async function() {
         try {
-          const data = await getDetail(location.search.replace("?id=", ""));
-          paintDetail(data);
+          const data = await getDetail(id);
+          paintDetail(data, id, "<%=userEmail%>", <%=flag%>);
           const clickable = document.querySelectorAll(".recommendations__item");
           clickable.forEach(item => {
             item.addEventListener("click", e =>
               e.currentTarget.lastChild.submit()
             );
           });
+          document
+            .querySelector("#js-like")
+            .addEventListener("click", e =>
+              e.currentTarget.parentNode.lastChild.submit()
+            );
           if (document.getElementById("showHide")) {
             const showHide = document.getElementById("showHide");
             showHide.addEventListener("click", () => {

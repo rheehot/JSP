@@ -16,19 +16,31 @@ pageEncoding="UTF-8"%>
   <body>
     <% String userEmail= (String) session.getAttribute("user.email"); String
     isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("loginError");%>
+    session.removeAttribute("loginError");
+    String username = (String) session.getAttribute("userName");%>
     <header></header>
     <nav></nav>
-    <main id="detail">
-      <div class="sk-chase">
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
+    <main id="profile">
+      <div class="profile__header__bg">
+        <div class="profile__header">
+          <div class="profile__header__user">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMrDSID-vaFd-fdIEZO2aKop4Zs9qipuCO13bBz9mQkTURZ489"
+              alt="profile-Image"
+            />
+            <span class="header__username">
+              <%=username %>
+            </span>
+          </div>
+          <div class="profile__header__nav">
+            <ul>
+              <li class="active">좋아요</li>
+              <li>item</li>
+              <li>item</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <span style="margin-left: 20px;">Building</span>
     </main>
     <script src="./assets/js/defaultView.js"></script>
     <script src="./assets/js/util.js"></script>

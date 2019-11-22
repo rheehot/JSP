@@ -7,6 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Vector;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import polyMovie.UsersBean;
 
 public class MemberMgr {
@@ -112,6 +117,51 @@ public class MemberMgr {
             pool.freeConnection(con, pstmt, rs);
         }
         return checkCon;
+    }
+    
+    public boolean likeCheck(String id, String likedUser) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        boolean loginCon = false;
+        try {
+            con = pool.getConnection();
+            String strQuery = "select likedUser from movies where id = ? and likedUser = ?";
+            pstmt = con.prepareStatement(strQuery);
+            pstmt.setString(1, id);
+            pstmt.setString(2, likedUser);
+            rs = pstmt.executeQuery();
+            loginCon = rs.next();
+        } catch (Exception ex) {
+            System.out.println("Exception" + ex);
+        } finally {
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return loginCon;
+    }
+    
+    public String getMember(String email) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String result = null;
+
+        try {
+            con = pool.getConnection();
+            String strQuery = "select * from users where email=?";
+            pstmt = con.prepareStatement(strQuery);
+            pstmt.setString(1, email);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                result = rs.getString("userName");
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception" + ex);
+        } finally {
+            pool.freeConnection(con, pstmt, rs);
+        }
+        return result;
     }
     
 }
