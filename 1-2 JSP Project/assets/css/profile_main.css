@@ -23,9 +23,9 @@
   display: flex;
   align-items: center;
   padding-left: 50px;
-  padding-top: 25px;
+  padding-top: 15px;
 }
-#profile img {
+#profile .profile__img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -52,4 +52,38 @@
 }
 #profile .profile__header__nav li:hover {
   color: #eee;
+}
+
+#profile .profile__contentsContainer {
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+#profile .contents__wrapper {
+  margin-top: 25px;
+}
+#profile .contents__title {
+  margin-top: 20px;
+}
+
+#profile .likeList__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+#profile .likeList__item {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px 40px 0;
+  cursor: pointer;
+}
+#profile .likeList__img {
+  width: 120px;
+  height: 180px;
+  border-radius: 15px;
+}
+#profile .likeList__title {
+  margin-top: 10px;
+  font-size: 13px;
 }
