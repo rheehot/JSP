@@ -7,13 +7,13 @@
 }
 #profile .profile__header__bg {
   width: 100%;
-  height: 150px;
+  height: 125px;
   background-color: #1f1f1f;
 }
 #profile .profile__header {
   max-width: 1200px;
   width: 100%;
-  height: 100%;
+  height: 125px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -45,9 +45,9 @@
   color: #aaa;
 }
 #profile .profile__header__nav li {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 15px 26px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 #profile .profile__header__nav li:hover {
@@ -75,7 +75,7 @@
 #profile .likeList__item {
   display: flex;
   flex-direction: column;
-  margin: 0 20px 40px 0;
+  margin: 0 20px 20px 0;
   cursor: pointer;
 }
 #profile .likeList__img {

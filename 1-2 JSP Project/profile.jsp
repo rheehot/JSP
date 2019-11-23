@@ -53,10 +53,9 @@ pageEncoding="UTF-8"%>
     <script src="./assets//js/api.js"></script>
     <script src="./assets/js/util.js"></script>
     <script>
-      const email = "<%=userEmail%>";
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
       const data = <%=json%>;
-      data.filter(item => item.email === email).forEach(async item => {
+      data.filter(item => item.email === "<%=userEmail%>").forEach(async item => {
         const data = await getDetail(item.id);
         const likeListItem = document.createElement("div");
         const likeListImage = document.createElement("img");
@@ -66,17 +65,12 @@ pageEncoding="UTF-8"%>
         likeListItem.className = "likeList__item";
         likeListImage.className = "likeList__img";
         likeListTitle.className = "likeList__title";
-
         a.href = "./detail.jsp?id="+data.id;
-
         likeListImage.src = "https://image.tmdb.org/t/p/w300"+data.poster_path;
         likeListTitle.innerText = (data.title.length > 10 ? data.title.substring(0, 10) + "..." : data.title);
-
         likeListItem.appendChild(likeListImage);
         likeListItem.appendChild(likeListTitle);
-
         a.appendChild(likeListItem);
-
         document.querySelector("#likeTarget").appendChild(a);
       });
     </script>

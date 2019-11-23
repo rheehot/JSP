@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<jsp:useBean id="movieMgr" class="polyMovie.MovieMgr" />
 <!DOCTYPE html>
 <html lang="kr">
   <head>
@@ -16,7 +17,8 @@ pageEncoding="UTF-8"%>
   <body>
     <% String userEmail= (String) session.getAttribute("user.email"); String
     isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("loginError"); %>
+    session.removeAttribute("loginError"); %> <% String json =
+    movieMgr.getLikedMovies().toString(); %>
     <header></header>
     <nav></nav>
     <div class="loaderContainer" id="indicator"></div>
@@ -29,23 +31,31 @@ pageEncoding="UTF-8"%>
     <script src="./assets/js/util.js"></script>
     <script>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
+      const json = <%=json%>;
+      const filter = json.filter(item => item.email === "<%=userEmail%>");
+      console.log("filter", filter);
       (async function() {
         if ("<%=userEmail%>" !== "null") {
           try {
             let similar = null;
             let randomMovie = null;
+            let randomTitle = null;
+            let randomId = null;
+            let randomNumber = Math.floor(Math.random() * filter.length);
             const { results: nowPlaying } = await getNowPlaying();
             const { results: popular } = await getPopular();
             const { results: topRated } = await getTopRated();
             const { results: upcoming } = await getUpcoming();
             while (true) {
-              randomMovie = nowPlaying[Math.floor(Math.random() * 20)];
-              similar = await getSimilar(randomMovie.id);
+              randomId = filter[randomNumber].id;
+              randomMovie = await getDetail(randomId);
+              randomTitle = randomMovie.title;
+              similar = await getSimilar(randomId);
               if (similar.results.length !== 0) break;
             }
             paintPosters(
               similar.results,
-              randomMovie.title + "와(과) 비슷한 영화",
+              randomTitle + "와(과) 비슷한 영화",
               "",
               true
             );
