@@ -2,6 +2,9 @@ package polyMovie;
 
 import java.sql.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class MovieMgr {
 	
 	private DBConnectionMgr pool = null;
@@ -14,13 +17,41 @@ public class MovieMgr {
         }
     }
 	
+	public JSONArray getLikedMovies() {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        JSONArray   jary    = new JSONArray();
+        try {
+            con = pool.getConnection();
+            String strQuery = "select * from likes";
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(strQuery);
+
+            while (rs.next()) {
+                JSONObject jo = new JSONObject();
+                ResultSetMetaData rmd = rs.getMetaData();
+                for ( int i=1; i<=rmd.getColumnCount(); i++ )
+                {
+                    jo.put(rmd.getColumnName(i),rs.getString(rmd.getColumnName(i)));
+                }
+                jary.put(jo);
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception" + ex);
+        } finally {
+            pool.freeConnection(con, stmt, rs);
+        }
+        return jary;
+    }
+	
 	public boolean likeInsert(MovieBean regBean) {
         Connection con = null;
         PreparedStatement pstmt = null;
         boolean flag = false;
         try {
             con = pool.getConnection();
-            String strQuery = "insert into movies values(?,?)";
+            String strQuery = "insert into likes values(?,?)";
             pstmt = con.prepareStatement(strQuery);
             pstmt.setString(1, regBean.getId());
             pstmt.setString(2, regBean.getEmail());
@@ -45,7 +76,7 @@ public class MovieMgr {
         boolean checkCon = false;
         try {
             con = pool.getConnection();
-            String strQuery = "select email from movies where id = ? and email = ?";
+            String strQuery = "select email from likes where id = ? and email = ?";
             pstmt = con.prepareStatement(strQuery);
             pstmt.setString(1, id);
             pstmt.setString(2, email);
@@ -67,7 +98,7 @@ public class MovieMgr {
 
         try {
             con = pool.getConnection();
-            String query = "delete from movies where id = ? and email = ?";
+            String query = "delete from likes where id = ? and email = ?";
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, id);
             pstmt.setString(2, email);

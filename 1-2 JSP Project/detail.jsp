@@ -42,11 +42,19 @@ pageEncoding="UTF-8"%>
               e.currentTarget.lastChild.submit()
             );
           });
-          document
+          if("<%=userEmail%>" === "null") {
+            document
+            .querySelector("#js-like")
+            .addEventListener("click", () =>
+              alert("로그인이 필요한 기능입니다.")
+            );
+          } else {
+            document
             .querySelector("#js-like")
             .addEventListener("click", e =>
               e.currentTarget.parentNode.lastChild.submit()
             );
+          }
           if (document.getElementById("showHide")) {
             const showHide = document.getElementById("showHide");
             showHide.addEventListener("click", () => {

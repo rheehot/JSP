@@ -33,7 +33,6 @@ pageEncoding="UTF-8"%>
       headerUserChange("<%=userEmail%>", "<%=isAdmin%>");
       const json = <%=json%>;
       const filter = json.filter(item => item.email === "<%=userEmail%>");
-      console.log("filter", filter);
       (async function() {
         if ("<%=userEmail%>" !== "null") {
           try {
@@ -46,19 +45,21 @@ pageEncoding="UTF-8"%>
             const { results: popular } = await getPopular();
             const { results: topRated } = await getTopRated();
             const { results: upcoming } = await getUpcoming();
-            while (true) {
+            if(filter.length !== 0){
+              while (true) {
               randomId = filter[randomNumber].id;
               randomMovie = await getDetail(randomId);
               randomTitle = randomMovie.title;
               similar = await getSimilar(randomId);
               if (similar.results.length !== 0) break;
+              }
+              paintPosters(
+                similar.results,
+                randomTitle + "와(과) 비슷한 영화",
+                "",
+                true
+              );
             }
-            paintPosters(
-              similar.results,
-              randomTitle + "와(과) 비슷한 영화",
-              "",
-              true
-            );
             paintPosters(nowPlaying, "현재 상영 중", "nowPlaying");
             paintPosters(upcoming, "개봉 예정", "upComing");
             paintPosters(popular, "인기있는", "popular");
