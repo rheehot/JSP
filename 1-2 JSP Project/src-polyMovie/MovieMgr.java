@@ -45,6 +45,34 @@ public class MovieMgr {
         return jary;
     }
 	
+	public JSONArray getAllLiked() {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        JSONArray   jary    = new JSONArray();
+        try {
+            con = pool.getConnection();
+            String strQuery = "select id, count(id) as 'likeCount' from likes group by id order by count(id) desc;";
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(strQuery);
+
+            while (rs.next()) {
+                JSONObject jo = new JSONObject();
+                ResultSetMetaData rmd = rs.getMetaData();
+                for ( int i=1; i<=rmd.getColumnCount(); i++ )
+                {
+                    jo.put(rmd.getColumnName(i),rs.getString(rmd.getColumnName(i)));
+                }
+                jary.put(jo);
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception" + ex);
+        } finally {
+            pool.freeConnection(con, stmt, rs);
+        }
+        return jary;
+    }
+	
 	public boolean likeInsert(MovieBean regBean) {
         Connection con = null;
         PreparedStatement pstmt = null;

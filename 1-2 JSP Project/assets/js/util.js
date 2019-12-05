@@ -186,6 +186,59 @@ const listMovies = (data, str) => {
   main.appendChild(mainColumn);
 };
 
+const likeMovies = (data, str, likeCount) => {
+  const mainColumn = document.createElement("div");
+  const mainSectionText = document.createElement("span");
+  const mainContents = document.createElement("div");
+  const main = document.querySelector("main");
+  mainContents.className = "main__contents";
+  mainColumn.className = "main__column";
+  mainSectionText.className = "main__sectionText";
+  mainSectionText.innerText = str;
+  data.forEach((item, index) => {
+    const mainContentsItem = document.createElement("div");
+    const mainContentsImgBox = document.createElement("div");
+    const posterImage = document.createElement("img");
+    const mainContentsTextbox = document.createElement("div");
+    const star = document.createElement("i");
+    const mainContentsImgBoxText = document.createElement("span");
+    const title = document.createElement("span");
+    const mainContentsForm = document.createElement("form");
+    const mainContentsFormInput = document.createElement("input");
+    mainContentsItem.className = "main__contents__item";
+    mainContentsItem.id = `${item.id}`;
+    mainContentsImgBox.className = "main__contents__imgBox";
+    posterImage.src =
+      item.poster_path === null
+        ? "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRhLinI3xZpIuFviNZcJ3X1qonvcA0rHcLhY57qgBAYwkNbQmgL"
+        : `https://image.tmdb.org/t/p/w300${item.poster_path}`;
+    mainContentsTextbox.className = "main__contents__likeTextBox";
+    star.className = "fas fa-thumbs-up";
+    mainContentsImgBoxText.className = "main__contents__imgBox__likeText";
+    mainContentsImgBoxText.innerText = likeCount[index].likeCount;
+    title.innerText = `${
+      item.title.length > 8 ? `${item.title.substring(0, 10)}...` : item.title
+    }`;
+    title.className = "posterTitle";
+    mainContentsForm.action = "./detail.jsp";
+    mainContentsFormInput.type = "hidden";
+    mainContentsFormInput.name = "id";
+    mainContentsFormInput.value = `${item.id}`;
+    mainContentsTextbox.appendChild(star);
+    mainContentsTextbox.appendChild(mainContentsImgBoxText);
+    mainContentsImgBox.appendChild(posterImage);
+    mainContentsImgBox.appendChild(mainContentsTextbox);
+    mainContentsForm.appendChild(mainContentsFormInput);
+    mainContentsItem.appendChild(mainContentsImgBox);
+    mainContentsItem.appendChild(title);
+    mainContentsItem.appendChild(mainContentsForm);
+    mainContents.appendChild(mainContentsItem);
+  });
+  mainColumn.appendChild(mainSectionText);
+  mainColumn.appendChild(mainContents);
+  main.appendChild(mainColumn);
+};
+
 const paintDetail = (data, id, email, isLiked) => {
   const backdrop = document.createElement("div");
   if (data.backdrop_path !== null) {

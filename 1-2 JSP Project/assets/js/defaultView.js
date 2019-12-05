@@ -126,33 +126,6 @@ const navList = (iconName, title, navPath, id) => {
   );
   document.querySelector("nav").appendChild(nav_item);
 };
-const navHelp = () => {
-  const nav_item = document.createElement("div");
-  const nav_box = document.createElement("div");
-  const navIcon = document.createElement("i");
-  const span = document.createElement("span");
-  const form = document.createElement("form");
-  const input = document.createElement("input");
-  nav_item.className = "nav__item";
-  nav_box.className = "nav__box";
-  nav_box.id = "nav_help";
-  navIcon.className = "fas fa-question";
-  span.className = "nav__text";
-  span.innerText = "도움말";
-  form.action = "./whatsNew.jsp";
-  input.type = "hidden";
-  input.name = "title";
-  input.value = "help";
-  nav_box.appendChild(navIcon);
-  nav_box.appendChild(span);
-  form.appendChild(input);
-  nav_item.appendChild(nav_box);
-  nav_item.appendChild(form);
-  nav_item.addEventListener("click", e =>
-    e.currentTarget.lastElementChild.submit()
-  );
-  document.querySelector("nav").appendChild(nav_item);
-};
 
 (function() {
   navHome();
@@ -161,7 +134,6 @@ const navHelp = () => {
   navList("fas fa-star", "높은평점", "nav_topRated", "topRated");
   navList("fas fa-exclamation", "개봉예정", "nav_upComing", "upComing");
   navList("fas fa-thumbs-up", "좋아요", "nav_like", "like");
-  navHelp();
   if (location.pathname.includes("index") === true) {
     navActive("nav_home");
   }
@@ -179,9 +151,6 @@ const navHelp = () => {
   }
   if (location.search.includes("like") === true) {
     navActive("nav_like");
-  }
-  if (location.href.includes("help") === true) {
-    navActive("nav_help");
   }
 })();
 

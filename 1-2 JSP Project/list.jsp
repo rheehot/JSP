@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<jsp:useBean id="movieMgr" class="polyMovie.MovieMgr" />
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +17,8 @@ pageEncoding="UTF-8"%>
   <body>
     <%String userEmail= (String) session.getAttribute("user.email"); String
     isAdmin = (String) session.getAttribute("isAdmin");
-    session.removeAttribute("loginError");%>
+    session.removeAttribute("loginError"); String json =
+    movieMgr.getAllLiked().toString();%>
     <header></header>
     <nav></nav>
     <div class="loaderContainer" id="indicator"></div>
@@ -54,17 +56,33 @@ pageEncoding="UTF-8"%>
             results = [...one, ...two];
             listMovies(results, "개봉예정");
           } else if (term === "like") {
+            const data = <%= json %>;
+            console.log(data);
+        	  data.forEach(async (item, index) => {
+              const adata = await getDetail(item.id);
+              results = [...results, adata];
+              if(index === data.length - 1){
+                likeMovies(results, "회원들이 좋아하는 영화", data);
+                console.log(results);
+                const clickable = document.querySelectorAll(".main__contents__item");
+                clickable.forEach(item => {
+                item.addEventListener("click", e =>
+                e.currentTarget.lastChild.submit()
+                );
+                });
+              }
+            });
           }
+        } catch (e) {
+          console.log(e);
+          document.querySelector(".networkError").style.display = "flex";
+        } finally {
           const clickable = document.querySelectorAll(".main__contents__item");
           clickable.forEach(item => {
             item.addEventListener("click", e =>
               e.currentTarget.lastChild.submit()
             );
           });
-        } catch (e) {
-          console.log(e);
-          document.querySelector(".networkError").style.display = "flex";
-        } finally {
           hideSpinner(".loaderContainer");
         }
       })();
