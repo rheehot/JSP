@@ -1,0 +1,61 @@
+@charset "EUC-KR";
+
+#tip {
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: var(--body__bgColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+#tip .content_header a {
+	padding: 15px
+}
+
+#tip .content_body  {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#tip .content {
+  width: 100%;
+  height: 100%;
+}
+
+#tip hr {
+	width: 100%;
+    background-color: var(--home__hrColor);
+    color: var(--home__hrColor);
+    border: 2px solid var(--home__hrColor);
+    margin: 15px 0;
+}
+
+.content_body .seat {
+	margin-top: 25px;
+}
+
+.content_body .seat .content {
+    margin-top: -370px;
+    margin-left: 500px;
+    height: 100%; 
+}
+
+.content_body .seat .content p {
+    padding-top: 10px;
+}
+
+.content_header .active {
+	color: yellow;
+}
+
+.contnet_body .etiquette {
+	margin-top: 25px;
+}
+
+.content_body .hide {
+	display: none;
+}

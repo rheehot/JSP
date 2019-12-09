@@ -27,11 +27,7 @@ pageEncoding="UTF-8"%>
           <div class="admin__column__leftItem">
             <span class="admin__column__item__text">회원 조회</span>
           </div>
-          <div class="admin__column__leftItem">
-            <span class="admin__column__item__text">회원탈퇴</span>
-          </div>
         </div>
-
         <div class="admin__column__right" id="rightComponent">
           <div class="admin__column__rightItem"></div>
         </div>
@@ -53,13 +49,6 @@ pageEncoding="UTF-8"%>
           e.currentTarget.style.backgroundColor = "rgba(187, 187, 187, 0.2)";
 
           users(json);
-        } else if(e.currentTarget.firstElementChild.innerText === "회원탈퇴"){
-          reset();
-          document.querySelectorAll(".admin__column__leftItem").forEach(item => item.style.backgroundColor = "#282828");
-          e.currentTarget.style.backgroundColor = "rgba(187, 187, 187, 0.2)";
-          const contents = document.createElement("span");
-          contents.innerText = "회원탈퇴 요청 목록";
-          document.getElementById("rightComponent").appendChild(contents);
         }
       };
       btn.forEach(item => item.addEventListener("click", btnClick));

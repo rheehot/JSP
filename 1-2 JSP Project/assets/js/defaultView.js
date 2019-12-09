@@ -99,6 +99,23 @@ const navHome = () => {
   a.appendChild(nav_box);
   document.querySelector("nav").appendChild(a);
 };
+const navTips = () => {
+  const a = document.createElement("a");
+  const nav_box = document.createElement("div");
+  const icon = document.createElement("i");
+  const span = document.createElement("span");
+  a.href = "./tips.jsp";
+  a.className = "nav__item";
+  nav_box.className = "nav__box";
+  nav_box.id = "nav_tips";
+  icon.className = "far fa-check-circle fa-lg";
+  span.className = "nav__text";
+  span.innerText = "팁";
+  nav_box.appendChild(icon);
+  nav_box.appendChild(span);
+  a.appendChild(nav_box);
+  document.querySelector("nav").appendChild(a);
+};
 const navList = (iconName, title, navPath, id) => {
   const nav_item = document.createElement("div");
   const nav_box = document.createElement("div");
@@ -134,6 +151,7 @@ const navList = (iconName, title, navPath, id) => {
   navList("fas fa-star", "높은평점", "nav_topRated", "topRated");
   navList("fas fa-exclamation", "개봉예정", "nav_upComing", "upComing");
   navList("fas fa-thumbs-up", "좋아요", "nav_like", "like");
+  navTips();
   if (location.pathname.includes("index") === true) {
     navActive("nav_home");
   }
@@ -151,6 +169,9 @@ const navList = (iconName, title, navPath, id) => {
   }
   if (location.search.includes("like") === true) {
     navActive("nav_like");
+  }
+  if (location.href.includes("tips") === true) {
+    navActive("nav_tips");
   }
 })();
 

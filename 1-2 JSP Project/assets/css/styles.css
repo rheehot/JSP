@@ -12,6 +12,7 @@
 @import url("./list_main.css");
 @import url("./admin_main.css");
 @import url("./profile_main.css");
+@import url("./tip.css");
 
 * {
   box-sizing: border-box;
